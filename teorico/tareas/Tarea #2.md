@@ -1,6 +1,6 @@
-# Stallings - Comunicaciones y Redes de Computadores
+# Redes de Computadoras
 
-## Unidad #2
+## Tarea #2
 
 ### Cuestiones de Repaso
 
@@ -66,5 +66,3 @@ Finalmente, este diseño favorece la estandarización e interoperatividad, permi
 Es un procesador cuya función principal es conectar dos o más redes y retransmitir datos entre ellas, actuando como un "porteador" que transporta bloques de datos de una red a otra, determinando la ruta adecuada para que la información alcance su destino final a través de la interconexión de redes. Permite que los datos atraviesen múltiples subredes interconectadas, haciendo que los sistemas finales puedan comunicarse aunque no estén en la misma red física.
 
 En la arquitectura TCP/IP, el encaminador implementa el Protocolo Internet. Cuando recibe un paquete, elimina la cabecera de la red de origen, examina la dirección de destino en la cabecera IP y direcciona el paquete a través de la siguiente subred, añadiendo una nueva cabecera de acceso a la red.
-
-### Ejercicios
