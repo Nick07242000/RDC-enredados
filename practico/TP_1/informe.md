@@ -109,8 +109,15 @@ Estos paquetes fueron enviados al default gateway para ser entregado al destino 
 |?|?|?|?|?|?
 
 ### Reflexiones y documentación
+La dirección IP se mantiene constante durante todo el trayecto porque actúa como un identificador global, permitiendo que los nodos intermedios determinen la ruta hacia el host de destino final sin importar cuántas subredes deba atravesar el paquete. En contraste, la dirección MAC cambia en cada salto debido a que su alcance es estrictamente local y solo sirve para la entrega física dentro de un mismo segmento de red; por lo tanto, cada router debe desencapsular el frame Ethernet para procesar la IP de destino y, tras consultar su tabla de ruteo, volver a encapsular el paquete en un nuevo frame con la MAC de destino del siguiente dispositivo  obtenida mediante el protocolo ARP, asegurando así que el mensaje avance físicamente de un nodo a otro hasta alcanzar su destino final.
 
-...
+El gateway se encarga de resolver la incapacidad del host para alcanzar destinos fuera de su propia red local. Debido al protocolo ARP , un host no tiene forma de obtener la direccion MAC del dispositivo destino fuerda de red, ni conoce las rutas externas para encaminar el paquete. Entonces esta Default gateway actua como intermediario, recibe los paquetes para dispositivos externos y utiliza su tabla de ruteo para reenviarlos hacia la red correcta funcionando como unico punto de salida.
+
+El modelo de ruteo hop-by-hop ofrece ventajas en términos de escalabilidad, eficiencia y resiliencia para redes de gran escala. Al basar las decisiones únicamente en tablas de ruteo locales, se evita que cada dispositivo deba conocer la topología completa de internet, lo cual sería técnicamente imposible debido al volumen de datos y al procesamiento requerido. Este diseño permite que la red sea altamente dinámica: si un enlace se cae o un router falla, el resto de los nodos simplemente actualizan su "siguiente salto" para rodear el problema sin necesidad de que el emisor original sepa qué ocurrió. De esta forma descentraliza la red haciendola robusta ante fallos.
+
+Es obligatorio reconstruir el frame Ethernet en cada salto porque las direcciones MAC solo tienen validez dentro de una red local y sirven para mover el dato entre dos equipos vecinos. Si un router reenviara el frame original sin cambios, este contendría la MAC de destino del salto anterior, provocando que el paquete sea descartado por los nuevos dispositivos al no reconocerlo como propio.
+
+El mecanismo de decremento del TTL previene el bucle infinito (routing loop) de paquetes en la red, un problema que ocurre cuando hay errores en las tablas de ruteo que hacen que un paquete circule eternamente entre dos o más routers sin alcanzar nunca su destino. Si el TTL no existiera, estos paquetes "huérfanos" nunca serían eliminados, acumulándose de forma indefinida hasta saturar el ancho de banda y consumir todos los recursos de procesamiento de los routers, lo que provocaría un colapso total de la red. Cuando el contador llega a cero, el router descarta el paquete y envía un mensaje ICMP de "Time Exceeded" al origen, garantizando que la red se mantenga limpia de tráfico basura.
 
 ### Inyección y detección de errores
 
