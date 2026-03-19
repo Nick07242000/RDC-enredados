@@ -29,17 +29,38 @@ Modelo 2: Envío de la Pizza
 
 2.2 a) Los primeros ministros de China y Francia necesitan alcanzar un acuerdo por teléfono, pero ninguno de los dos habla el idioma de su interlocutor. Es más, ninguno tiene cerca un traductor que traduzca el idioma del otro. No obstante, ambos tienen un traductor de inglés. Dibuje un diagrama similar al de la Figura 2.16 que describa la situación y detalle las interacciones que haya en cada nivel.
 
-...
+<img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/b3c2f348-eaf0-4c3a-9cb5-03c887745c06" />
+
+- En primer nivel tenemos cada ministro, que quiere comunicarse con el otro para llegar a un acuerdo, formulan el discurso diplomatico y lo transmiten a sus traductores.
+- Los traductores a ingles, reciben los mensajes y los transforman de idioma al ingles, y los comunican al telefono.
+- El telefono transforma la voz en señales para ser transmitidas por el medio.
+- El medio transmite las señales recibidas por los telefonos.
 
 b) Suponga ahora que el traductor del primer ministro chino puede traducir sólo al japonés y que el primer ministro francés tiene un traductor alemán. Un traductor de japonés a alemán se encuentra disponible en Alemania. Dibuje el diagrama que refleje esta nueva situación y describa la hipotética conversación telefónica.
 
-...
+<img width="900" height="300" alt="image" src="https://github.com/user-attachments/assets/5cc351ef-cb32-42b9-8a9f-0972a2d0db64" />
+
+- Cada ministro formula el discurso diplomatico y lo transmite a sus traductores.
+- Los traductores reciben los mensajes y los transforman de idioma al Japones o al Aleman, y los comunican al telefono.
+- El telefono transforma la voz en señales para ser transmitidas por el medio.
+- El medio transmite las señales recibidas por los telefonos.
+- El telefono en Alemania traduce las señales a voz nuevamente.
+- En traductor en Alemania recibe el mensaje y lo traduce al idioma correspondiente.
+- El telefono en Alemania traduce la voz a señales nuevamente.
+- El medio transmite las señales recibidas por los telefonos.
+- El telefono del ministro opuesto traduce las señales a voz nuevamente.
+- El traductor opuesto traduce el mensaje al idioma del ministro.
+- El ministro recibe el mensaje.
 
 ---
 
 2.3. Enumere las desventajas del diseño en capas para los protocolos.
 
-...
+- Sobrecarga de procesamiento: Cada capa de la pila requiere tiempo y recursos de cómputo adicionales para procesar su propia información de control y cabeceras, lo que puede ralentizar la comunicación si el número de capas es excesivo.
+- Sobrecarga de datos: Debido al proceso de encapsulamiento, cada nivel añade su propia cabecera (y a veces cola) a los datos, lo que incrementa el volumen total de bits transmitidos y reduce la eficiencia en el uso del ancho de banda disponible.
+- Complejidad de integración: Un diseño con demasiados niveles puede dificultar la descripción y la integración de las funciones, creando complicaciones técnicas innecesarias en el desarrollo del software y hardware.
+- Duplicidad de funciones: Con frecuencia, funciones similares se implementan en varias capas distintas lo que genera una redundancia que consume recursos adicionales.
+- Fragmentación ineficiente: El tener que dividir los datos para ajustarse a los límites de las capas inferiores puede generar una carga adicional de interrupciones y procesamiento en el receptor para reensamblar la información original.
 
 ---
 
