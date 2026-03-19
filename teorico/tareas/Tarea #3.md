@@ -51,7 +51,7 @@ Modelo 2: Envío de la Pizza
 
 2.5. Una red de difusión es aquella en la que las transmisiones de cualquier estación son recibidas por todas las estaciones conectadas al medio compartido. Ejemplos son una red de área local con topología en bus, como Ethernet, o una red inalámbrica. Discuta si es necesaria o no una capa de red (capa 3 de OSI) en una red de difusión.
 
-...
+En una red de difusión, donde todas las estaciones comparten el medio y reciben las mismas señales, la capa de red no es estrictamente necesaria para la comunicación interna entre dispositivos de la misma subred. En estos escenarios, las funciones de gestión y direccionamiento físico pueden ser resueltas íntegramente por la capa de enlace de datos, empleando las direccions MAC para identificar a los destinatarios y regular el canal. Al no requerirse inteligencia de encaminamiento o conmutación para mover datos entre nodos intermedios dentro del mismo entorno local, el uso de una capa de red resulta superfluo.
 
 ---
 
