@@ -14,7 +14,7 @@ Se encaraga de que los datos se intercambien de una manera fiable, asegurandose 
 
 Para cumplir con este objetivo, esta capa realiza la tarea crítica de asegurar la entrega en orden, lo que significa que todos los datos deben llegar a la aplicación de destino en la misma secuencia en que fueron enviados. Para ello, utiliza números de secuencia en las unidades de datos, lo que permite al receptor reordenar la información si esta llega desordenada a través de la red. Asimismo, se encarga del control de errores y fiabilidad, asegurando que los datos se entreguen libres de errores, sin pérdidas ni duplicaciones, mediante el uso de códigos de detección como la suma de comprobación.
 
-Tambien realiza direccionamiento y la multiplexación mediante identificadores denominados puertos o puntos de acceso al servicio. Esto permite distinguir entre las diferentes aplicaciones que se ejecutan simultáneamente en un mismo computador, garantizando que los datos alcancen el proceso de usuario correcto. Operativamente, la capa realiza la segmentación y el encapsulamiento* ¿recibiendo bloques de datos de la capa de aplicación y dividiéndolos en unidades más pequeñas y manejables llamadas segmentos, a las que añade una cabecera con información de control.
+Tambien realiza direccionamiento y la multiplexación mediante identificadores denominados puertos o puntos de acceso al servicio. Esto permite distinguir entre las diferentes aplicaciones que se ejecutan simultáneamente en un mismo computador, garantizando que los datos alcancen el proceso de usuario correcto. Operativamente, la capa realiza la segmentación y el encapsulamiento ¿recibiendo bloques de datos de la capa de aplicación y dividiéndolos en unidades más pequeñas y manejables llamadas segmentos, a las que añade una cabecera con información de control.
 
 2.3. ¿Qué es un protocolo?
 
@@ -41,7 +41,7 @@ Los principios fundamentales que rigen una arquitectura de protocolos incluyen:
 
 - Independencia de las capas: Las capas se definen de tal manera que las funciones más básicas se delegan a las inferiores, ocultando los detalles técnicos a los niveles superiores.
 - Prestación de servicios: Cada capa proporciona un conjunto específico de servicios a la capa inmediatamente superior, de modo que los cambios en un nivel no deberían requerir modificaciones en los demás.
-- Comunicación entre pares: La comunicación real se logra mediante el intercambio de bloques de datos entre capas correspondientes (entidades pares) de diferentes sistemas, siguiendo reglas o convenciones denominadas **protocolos**.
+- Comunicación entre pares: La comunicación real se logra mediante el intercambio de bloques de datos entre capas correspondientes (entidades pares) de diferentes sistemas, siguiendo reglas o convenciones denominadas protocolos.
 
 2.6. ¿Qué es TCP/IP?
 
