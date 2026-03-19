@@ -59,11 +59,45 @@ Modelo 2: Envío de la Pizza
 
 a) Diseñe una arquitectura con ocho capas y ponga un ejemplo de su utilización.
 
-...
+1.  Capa Física: Se encarga de la transmisión de cadenas de bits no estructuradas sobre el medio físico, definiendo las características mecánicas y eléctricas.
+2.  Capa de Acceso al Medio: Gestiona el acceso a medios compartidos y el direccionamiento físico, resolviendo conflictos de contención o turnos de transmisión.
+3.  Capa de Control de Enlace Lógico: Proporciona una interfaz hacia las capas superiores y gestiona el control de errores y flujo en el enlace.
+4.  Capa de Red: Responsable del encaminamiento de los paquetes a través de sistemas intermedios hasta alcanzar el sistema destino.
+5.  Capa de Transporte: Garantiza una transferencia de datos fiable, transparente y en orden entre los puntos finales.
+6.  Capa de Sesión: Organiza y sincroniza el diálogo entre las aplicaciones, permitiendo la gestión de puntos de recuperación.
+7.  Capa de Presentación: Gestiona la sintaxis y la representación de los datos, permitiendo funciones como el cifrado o la compresión.
+8.  Capa de Aplicación: Contiene la lógica necesaria para que las aplicaciones de usuario accedan a los servicios de la red.
+
+Esta separación se basa en el Principio 3, ya que la tarea de regular el acceso a un cable compartido requiere tecnologías y lógica de control muy distintas a las de mantener un enlace lógico fiable entre dos puntos. El Principio 8 justifica mantener la división de las capas superiores debido a los diferentes niveles de abstracción.
+
+Ejemplo de utilización: Envío de un archivo confidencial en una red local
+
+- Aplicación: Un usuario inicia la transferencia de un archivo mediante un software específico.
+- Presentación: El sistema cifra el archivo para asegurar su privacidad antes de que abandone el host.
+- Sesión: Se establecen puntos de comprobación en la transferencia para que, si falla la red, el envío se retome desde el último bloque confirmado.
+- Transporte: Los datos se dividen en segmentos y se les asignan números de secuencia para garantizar que lleguen sin errores ni duplicados.
+- Red: Se añade la dirección IP de destino para que los encaminadores determinen la ruta óptima hacia el receptor.
+- Control de Enlace Logico: Se añade información de control para gestionar el flujo punto a punto entre la estación y el nodo de red.
+- Acceso al Medio: La red aplica un algoritmo para determinar el instante exacto en que puede transmitir la trama al cable sin colisionar con otros.
+- Física: Los bits se transforman en niveles de tensión eléctrica que viajan por el cable de par trenzado.
 
 b) Diseñe otra con seis capas y ponga otro ejemplo para ésta.
 
-...
+1. Capa Física: Se encarga de la interfaz física entre dispositivos y define las reglas para la transmisión de cadenas de bits no estructuradas sobre el medio. Su función es transformar los datos en señales electromagnéticas capaces de propagarse.
+2. Capa de Acceso al Medio: Esta capa gestiona el acceso coordinado a medios de transmisión compartidos y el direccionamiento físico. Se justifica su separación de la capa física por emplear lógicas de control distintas, como la detección de colisiones.
+3. Capa de Control de Enlace Lógico: Actúa como interfaz hacia las capas superiores y proporciona servicios de transferencia de datos fiables, incluyendo el control de flujo y errores básico. Sigue el Principio 11 al reestructurar funciones de enlace en subcapas según las necesidades de comunicación.
+4. Capa de Red: Es la responsable de la transferencia de información entre sistemas finales y de determinar la ruta óptima a través de nodos intermedios. Proporciona independencia a los niveles superiores respecto a las tecnologías de conmutación subyacentes.
+5. Capa de Transporte: Proporciona un mecanismo de intercambio de datos extremo a extremo que garantiza que la información se entregue libre de errores, en orden y sin duplicados. Libera a las capas superiores de cualquier preocupación técnica sobre el transporte.
+6. Capa de Aplicación: Agrupa la lógica necesaria para admitir aplicaciones de usuario junto con la gestión del formato y la sintaxis de los datos. Siguiendo el Principio 1 esta capa fusiona las funciones de Aplicación, Presentación y Sesión del modelo OSI para reducir la complejidad de integración.
+
+Ejemplo de utilización: Consulta a un servidor web
+
+- Aplicación: El navegador genera una solicitud HTTP para obtener una página web, gestionando internamente la representación de los caracteres.
+- Transporte: Se utiliza el protocolo TCP para establecer una conexión lógica y asegurar que la solicitud llegue íntegra mediante el uso de números de secuencia.
+- Red: El protocolo IP añade la dirección global de destino para que los encaminadores determinen el camino a través de la interconexión de redes.
+- Control de Enlace Lógico: La unidad de datos se encapsula añadiendo información de control de enlace para gestionar el flujo lógico hacia el siguiente salto.
+- Acceso al Medio: El sistema aplica un algoritmo para escuchar el medio y transmitir la trama solo cuando el canal esté libre, evitando colisiones.
+- Física: Los datos se convierten en señales eléctricas que viajan por un cable de par trenzado hasta el dispositivo de red.
 
 ---
 
