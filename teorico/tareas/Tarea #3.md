@@ -71,8 +71,8 @@ b) Diseñe otra con seis capas y ponga otro ejemplo para ésta.
 
 a) En la segmentación, ¿es necesario que cada segmento del nivel (N.1) contenga unacopia de la cabecera del nivel N?
 
-...
+No es necesario que cada segmento del nivel N-1 contenga una copia de la cabecera del nivel N, ya que la capa inferior trata a la PDU superior como un bloque indivisible de datos de usuario e ignora su contenido específico. Durante este proceso, la cabecera original del nivel N queda integrada simplemente como parte de la carga útil del primer fragmento. Aunque cada unidad de datos de nivel N-1 requiere su propia cabecera de ese nivel para su transporte independiente, la cabecera de nivel N solo se recupera y procesa una vez que todos los fragmentos han sido reensamblados por la entidad par en el destino.
 
 b) En el agrupamiento, ¿es necesario que cada una de las PDU conserve su cabecera o se pueden agrupar los datos en una única PDU de nivel N con una única cabecera de nivel N?
 
-...
+En el agrupamiento, es indispensable que cada PDU conserve su propia cabecera, ya que estas contienen información de control crítica necesaria para que la entidad par en el destino pueda identificar y procesar cada mensaje de forma independiente. Dado que la capa inferior trata a las PDU recibidas como datos de usuario opacos, no tiene la capacidad de consolidar las cabeceras de la capa superior; simplemente las empaqueta en una unidad mayor para su transporte, manteniendo la integridad individual de cada bloque original para su correcta entrega final.
