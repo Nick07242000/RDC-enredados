@@ -45,7 +45,9 @@ Modelo 2: Envío de la Pizza
 
 2.4. Dos cuerpos de ejército (de color azul), situados sobre dos colinas, están preparando un ataque a un único ejército (de color rojo) situado en el valle que las separa. El ejército rojo puede vencer por separado a cada cuerpo del ejército azul, pero fracasará si los dos ejércitos azules le atacan simultáneamente. Los cuerpos de ejército azules se comunican mediante un sistema de comunicación no fiable (un soldado de infantería). El comandante de uno de los cuerpos de ejército azul desearía atacar al mediodía. Su problema es éste: si envía un mensaje ordenando el ataque, no puede estar seguro de que el mensaje haya llegado. Podría solicitar una confirmación, pero ésta también podría ser interceptada. ¿Existe algún protocolo que pueda utilizar el ejército azul para evitar la derrota?
 
-...
+No existe un protocolo que garantice con certeza absoluta que ambos ejércitos atacarán simultáneamente a través de un canal no fiable. Esto se debe a que, sin importar cuántas confirmaciones se envíen, el emisor del último mensaje nunca podrá estar seguro de que este llegó a su destino, lo que genera una cadena infinita de confirmaciones necesarias para alcanzar un consenso perfecto.
+
+Sin embargo, podemos usar un three-way handshake para establecer una conexión. En este procedimiento, el primer general enviaría la orden (SYN), el segundo respondería confirmando la recepción y enviando su propia sincronización (SYN/ACK), y el primero enviaría una confirmación final (ACK) para asegurar que ambos están listos. Este método aumenta significativamente la fiabilidad de la comunicación. Para manejar la posible pérdida de mensajeros, si el comandante que envía la orden no recibe una confirmación en un tiempo determinado, asume que el mensaje se perdió y lo envía de nuevo. De esta manera, mediante el uso de retransmisiones y números de secuencia, se logra que un sistema de comunicación intrínsecamente no fiable funcione de manera fiable y transparente en la práctica.
 
 ---
 
