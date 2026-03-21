@@ -63,6 +63,13 @@ Para poder enviar un frame dentro de una red local es necesario conocer la direc
 
 Finalmente, para garantizar la integridad de los datos transmitidos, se utilizan mecanismos de detección y corrección de errores (EDAC), que permiten identificar si la información fue alterada durante la transmisión. Estos mecanismos son fundamentales para asegurar la confiabilidad de las comunicaciones en redes de computadoras.
 
+EDAC (Error Detection And Correction) es un conjunto de técnicas utilizadas en sistemas digitales y de comunicaciones para garantizar la integridad de los datos, permitiendo detectar y, en algunos casos, corregir errores que pueden producirse durante la transmisión o el almacenamiento. Estos errores pueden originarse por interferencias, ruido o fallas de hardware.
+
+Dentro de las técnicas de EDAC, una de las más simples es la **paridad**, la cual se utiliza principalmente para la detección de errores. Este método consiste en agregar un bit adicional a una secuencia de datos, denominado bit de paridad, cuyo valor se determina en función de la cantidad de bits en ‘1’ presentes en el mensaje. Existen dos tipos principales de paridad: la paridad par, donde se busca que la cantidad total de unos sea un número par, y la paridad impar, donde se busca que sea impar. En nuestro caso, tomaremos la paridad par, por lo que si la cantidad de 1 es par, el bit de paridad es 0.
+
+La segunda técnica es la de **XOR** en donde se realizan combinaciones específicas de bits mediante XOR para generar información redundante adicional. En este caso, se toma el primer nibble y se aplica la operación XOR con el segundo nibble. El resultado, se utiliza para hacer otra operación XOR con el tercer nibble y así hasta el último nibble cuyo resultado es el código EDAC. Esta información permite no solo detectar la presencia de errores, sino también identificar su posición exacta y corregirlos automáticamente.
+
+
 ---
 
 ## Resultados
@@ -121,7 +128,52 @@ El mecanismo de decremento del TTL previene el bucle infinito (routing loop) de 
 
 ### Inyección y detección de errores
 
-...
+Parte 2. **Inyección y detección de errores**
+
+El ejercicio es simple:
+
+a. Routers no default gateway (sin LAN debajo): al momento de re-empaquetar los paquetes, modificar (o no) en uno o más bits la payload. Documentar de manera secreta qué paquetes fueron modificados y que paquetes no (registrar payload + destino). Reenviar el paquete.
+
+En este ejercicio, la modificación de la payload fue realizada por el profesor, quien actúa como un agente que introduce errores de forma controlada en los paquetes, simulando condiciones reales de transmisión en las que pueden ocurrir corrupciones de datos debido a ruido o interferencias y luego también realizo el reenvío de los paquetes entre los grupos. 
+Se establece como base que el código EDAC es correcto.
+
+b. Hosts / End devices: al enviar paquetes aplicar técnicas de EDAC. Al recibir paquetes,
+determinar si fueron o no modificados. Justificar.
+
+Envío de paquete:
+
+Se nos entregó un payload en hexadecimal, el cual teníamos que pasar a binario	y luego calcular el EDAC con la **técnica de paridad** y con ello, completar un frame para simular el envío de este a otra IP.
+
+payload hexadecimal: 9e06
+payload binario: 1001 1110 0000 0110
+
+Cálculo de bits de paridad: se agrupan nibbles y sobre estos se calcula el bit de paridad de cada uno. como hay 4 nibbles, van a haber 4 bits de paridad:
+
+1001: el número de 1 es 2 (par) por lo tanto el bit de paridad es 0.
+1110: el número de 1 es 3 (impar) por lo tanto el bit de paridad es 1.
+0000: el número de 1 es 0 (par) por lo tanto el bit de paridad es 0.
+0110: el número de 1 es 2 (par) por lo tanto el bit de paridad es 0.
+
+EDAC paridad: 0 1 0 0
+IP origen: 10.13.0.101
+
+Esta información se envió a otro grupo para la parte dos.
+
+Recepción de paquete:
+
+Se recibió un frame enviado por otro grupo el cual contenía un payload, una dirección IP origen y destino y un código EDAC con **técnica XOR**. 
+
+<img src="https://github.com/user-attachments/assets/9fd6feca-3c25-43ba-b225-4b3eadefb6ef" width="800">
+
+Para confirmar si el payload no fue modificado sobre el payload realizamos las operaciones de XOR para comparar si el código EDAC que nos daba como resultado era el mismo que el código que se recibió en el frame.
+
+1001 XOR 1100 = 0101
+
+0101 XOR 1111 = 1010
+
+1010 XOR 0101 = 1111
+
+Esto daría como EDAC **1111** y como nos dieron diferentes códigos, podemos confirmar que el payload fue modificado. 
 
 ---
 
