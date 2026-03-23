@@ -95,7 +95,7 @@ Se realizo una simulacion de una rutina ARP donde nuestro router descubrio a sus
 
 |IP|MAC|
 |---|---|
-|?|?
+|10.8.0.1|AA:43:80
 
 ### Conformación de paquetes
 
@@ -111,9 +111,15 @@ Cada uno de los hosts genero un paquete para ser transmitido a traves de la red,
 
 Estos paquetes fueron enviados al default gateway para ser entregado al destino final, donde cada router desempaqueto y empaqueto los frames de acuerdo al recorrido de los mismo a traves de ethernet.
 
+**Recepción de Frame Ethernet:**
+
+Se recibió el siguiente frame:
+
+<img src="https://github.com/user-attachments/assets/4c6a20f4-0716-4f64-8b6e-b9cfc1560302" width="300">
+
 |MAC DESTINO|MAC ORIGEN|IP ORIGEN|IP DESTINO|TTL|PAYLOAD
 |---|---|---|---|---|---|
-|?|?|?|?|?|?
+|AD:43.93|AD:44:54|10.14.0.104|10.13.0.101|2|0011010101011011
 
 ### Reflexiones y documentación
 La dirección IP se mantiene constante durante todo el trayecto porque actúa como un identificador global, permitiendo que los nodos intermedios determinen la ruta hacia el host de destino final sin importar cuántas subredes deba atravesar el paquete. En contraste, la dirección MAC cambia en cada salto debido a que su alcance es estrictamente local y solo sirve para la entrega física dentro de un mismo segmento de red; por lo tanto, cada router debe desencapsular el frame Ethernet para procesar la IP de destino y, tras consultar su tabla de ruteo, volver a encapsular el paquete en un nuevo frame con la MAC de destino del siguiente dispositivo  obtenida mediante el protocolo ARP, asegurando así que el mensaje avance físicamente de un nodo a otro hasta alcanzar su destino final.
@@ -179,10 +185,19 @@ Esto daría como EDAC **1111** y como nos dieron diferentes códigos, podemos co
 
 ## Discusión y conclusiones
 
-...
+En este ejercicio aplicamos técnicas de EDAC para verificar si los datos se modificaban durante la transmisión. En el envío usamos paridad por nibble, que es un método simple para detectar errores, aunque no es totalmente confiable para todos los casos.
+
+En la recepción usamos XOR para recalcular el EDAC y compararlo con el que venía en el frame. Como los resultados no coincidieron, pudimos concluir que el payload fue modificado. En este caso, la modificación fue intencional, pero sirve para simular errores reales en la red.
+
+Conclusiones:
+
+Las técnicas vistas permiten detectar errores en los datos transmitidos.
+La paridad es útil pero limitada, mientras que XOR resulta más confiable para este tipo de verificación.
+
+En este caso, como los EDAC no coincidieron, se confirmó que hubo una alteración en el mensaje. Esto demuestra la importancia de estos métodos para asegurar la integridad de la información en redes y la dificultad de poder predecir (al menos a mano) que bit se cree que se cree que fue modificado.
 
 ---
 
 ## Referencias
 
-[1] - ...
+[1] - Stallings - Comunicacion y Redes de Computadores 
