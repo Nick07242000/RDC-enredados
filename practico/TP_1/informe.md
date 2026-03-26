@@ -189,8 +189,6 @@ En este ejercicio aplicamos técnicas de EDAC para verificar si los datos se mod
 
 En la recepción usamos XOR para recalcular el EDAC y compararlo con el que venía en el frame. Como los resultados no coincidieron, pudimos concluir que el payload fue modificado. En este caso, la modificación fue intencional, pero sirve para simular errores reales en la red.
 
-Conclusiones:
-
 Las técnicas vistas permiten detectar errores en los datos transmitidos.
 La paridad es útil pero limitada, mientras que XOR resulta más confiable para este tipo de verificación.
 
