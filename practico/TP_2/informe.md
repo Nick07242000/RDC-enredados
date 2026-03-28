@@ -97,6 +97,201 @@ Grupo The Lords of Pings:
 
 https://github.com/user-attachments/assets/7675bf64-da65-45b1-b979-05253304d359
 
+## Parte 2: Equipamiento físico, verificación y utilización de equipos de red y análisis de tráfico.
+
+### Objetivos: 
+
+● Tomar contacto con equipamiento físico, reconocer su anatomía, paneles, indicadores, interfaces, etc., y las correspondientes funciones.
+
+● Poner en funcionamiento un switch empresarial (o configurable).
+
+● Análisis de tráfico, comportamiento de ARP, NDP e ICMP.
+
+● Asignación de direcciones.
+
+### Consignas
+
+1) Utilizando internet y el datasheet del switch Cisco, documentar las características principales del mismo.
+
+    Switch CISCO CATALYST 2950 SERIES:<br>
+   
+   <img src="https://github.com/user-attachments/assets/89f74f5f-bb62-4d36-b74e-922ee695cd16" width="200"><br>
+   <img src="https://github.com/user-attachments/assets/d1bdd4d0-6202-443c-b306-c784b9fdb66b" width="200"><br>
+
+    I. Descripción general:
+
+    - Switch gestionable (managed) de configuración fija.
+    - Diseñado para redes pequeñas y medianas (LAN de acceso).
+    - Opera en Capa 2 (Switching Ethernet).
+    - Usa Cisco IOS.
+    - Soporta tráfico de datos, voz y video.
+    - Configuración mediante:
+        CLI
+        Web (Cisco Device Manager)
+        Cisco Network Assistant
+
+    II. Modelos y puertos
+
+    Distintas variantes según cantidad de puertos: 12, 24 o 48 puertos Fast Ethernet (10/100 Mbps)
+
+    Uplink: es un puerto de alta capacidad en un switch utilizado para conectarlo con otros dispositivos de red, permitiendo la comunicación con redes superiores.
+
+    Uplinks:
+    Fibra (1000BASE-SX) en modelos SX
+    Cobre (10/100/1000) en modelos T
+
+    2950-12 → 12 puertos
+    2950-24 → 24 puertos
+    2950T-48 → 48 + uplinks Gigabit cobre
+    2950SX-48 → 48 + uplinks fibra
+
+    III. Rendimiento
+
+    Switching fabric es el sistema interno del switch que mueve los datos entre los puertos.
+
+    Switching fabric: Hasta 13.6 Gbps
+
+    Forwarding es el proceso de enviar un paquete desde un puerto de entrada al puerto de salida correcto. Cuántos paquetes puede procesar.
+
+    Forwarding: Hasta 10.1 Mpps
+
+    Funcionamiento a wire-speed (máximo rendimiento en todos los puertos)
+    Buffer compartido: 8 MB
+    Tabla MAC: hasta 8000 direcciones
+
+    IV. Funciones de red
+    - Conectividad
+    Soporta:
+        VLANs (IEEE 802.1Q)
+        Trunking (técnica que permite que un mismo enlace físico transporte tráfico de múltiples VLANs. Sirve para conectar switch con switch, switch con router o extender VLANs a través de la red)
+        EtherChannel (agregación de enlaces)
+    - Multicast
+        IGMP Snooping (optimiza tráfico multicast)
+
+    V. Seguridad
+
+    Incluye múltiples mecanismos:
+
+        Port Security (por MAC)
+        802.1X (autenticación por puerto)
+        SSH v2 (acceso seguro)
+        VLAN privada (aislamiento de puertos)
+        Autenticación con:
+        RADIUS
+        TACACS+
+
+    VI. Calidad de servicio (QoS):
+
+        Priorización de tráfico (voz, datos críticos)
+        4 colas de salida por puerto
+        Algoritmos:
+            Strict Priority
+            WRR (Weighted Round Robin)
+            Clasificación por CoS (802.1p)
+
+    VII. Gestión y administración:
+
+        SNMP (v1, v2, v3)
+        CLI (consola)
+        Web GUI (Cisco Device Manager)
+        Cisco Network Assistant:
+            Configuración masiva
+            Monitoreo
+            Soporte RMON (monitoreo de red)
+            SPAN (análisis de tráfico)
+
+    VIII. Características físicas:
+
+        Formato rack 1U
+        Conectores:
+            RJ-45 (UTP)
+            Fibra (MT-RJ en modelos SX)
+            LEDs de estado por puerto
+        Alimentación:
+            100–240V AC
+        Consumo:
+            30W a 45W
+
+    IX. Estándares soportados
+
+    IEEE:
+        802.3 (Ethernet)
+        802.3u (Fast Ethernet)
+        802.3z (Gigabit)
+        802.1Q (VLAN)
+        802.1p (QoS)
+        802.1X (seguridad)
+
+3) Elaborar checklists (manuales, indicaciones) de procedimientos para las siguientes actividades:
+
+a) Conectar una PC al puerto de consola del switch Cisco a 9600 baudios utilizando PUTTY. Turnense para verificar el acceso a la consola del Switch.
+
+    Requerimientos: PuTTY previamente instalado
+
+    Pasos:
+    1) Conectar el cable consola al puerto Console del switch y el otro extremo a la PC.
+
+    2) Asegurarse de tener el drivevr para reconocerlo (en nuestro caso tuvimos que descargarlo) y revisar el puerto en que se reconoce (COM).
+
+    3) Abrir PuTTY y configurarlo para conexión serial de 9600 baudios y en el COM correspondiente (del punto 2).
+
+    4) Presionar Open y enter hasta que aparezca el prompt del switch.
+
+    Nuestra experiencia: luego de tener inconvenientes con el driver, una vez que se instalo correctamente no se logro la conexión porque a pesar de que aparecia el dispositivo en el COM5, a la hora de configurarlo en PuTTY no lo registraba bien por lo que esta parte de la experiencia no la pudimos terminar de realizar bien pero escribimos aqui todo lo que tendria que pasar en teoría.
+
+b) Acceder a las opciones de administración del switch y modificar claves de acceso.
+
+    1) Acceso al modo privilegiado:
+
+    ```
+    enable
+    ```
+
+    2) Entrar a configuración global:
+
+    ```
+    configure terminal
+    ```
+
+    3) Cambiar contraseña de modo privilegiado:
+
+    ```
+    enable secret NUEVA_CLAVE
+    ```
+
+    4) Configurar contraseña de consola:
+
+    ```
+    line console 0
+    password NUEVA_CLAVE
+    login
+    ```
+
+    5) Guardar configuración:
+
+    ```
+    end
+    write memory
+    ```
+
+    Nuestra experiencia: Nuestros compañeros pudieron ingresar hasta el prompt pero no se sabian las contraseñas por lo que no se pudo seguir con la configuración.
+
+c) Conectar computadoras al switch, configurar una red y testear conectividad.
+
+    1) Conectar las PCs a un puerto del switch y verificar con las luces si esta bien la conexión (UP verde).
+
+    2) Configuración de IP en PCs: en cada PC ir a configuración de red y asignar IP y máscara manual.
+
+    3) Verificar configuración.
+
+    4) Test de conectividad: hacer ping con otra IP de la red.
+
+3) De a dos o más grupos por switch, conectarán una computadora por cada grupo al mismo utilizando los
+cables que tengan de la parte 1 de este TP. Por el amor de todo lo que es bueno espero que hayan verificado
+bien el cable. Verificar que pueden llegar a la PC de otro grupo usando ping o captura de paquetes.
+
+**Nuestra experiencia**: los cables conectaron bien basados en las luces de los puertos pero no llegamos a configurar las IPs de cada PC por lo que los pings que realizamos nunca llegaron a destino.
+
 ---
 
 ## Discusión y conclusiones
