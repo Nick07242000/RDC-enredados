@@ -47,13 +47,11 @@
 
 ## Resultados
 
-## **Parte 1: Armado y verificación de cables Cat5/Cat5e bajo estándar T568A/B.**
+### _Parte 1: Armado y verificación de cables Cat5/Cat5e bajo estándar T568A/B_
 
-**Consignas:**
+#### 1) Investigar los pasos para crimpar un cable bajo la norma T568A/B DERECHO. No cruzado. 
 
-1) Investigar los pasos para crimpar un cable bajo la norma T568A/B DERECHO. No cruzado. 
-
-Agregar foto de codigo de colores
+<img width="1500" height="1000" alt="image" src="https://github.com/user-attachments/assets/aa3320e9-3a80-466a-9c9e-c46bc94d9ab6" />
 
 Pasos para construcción de cable con norma T568A/B DERECHO no cruzado:
 
@@ -68,19 +66,15 @@ Pasos para construcción de cable con norma T568A/B DERECHO no cruzado:
     e. Se colocá el conector en la pinza crimpeadora y se presiona fuerte hasta que haga click. Esto fija los pines y asegura el contacto eléctrico.
 
 
-2) Construir 1 (un) cable por grupo, de 1 - 1.5 m. aproximadamente. Tipo DERECHO, NO CRUZADO.
+#### 2) Construir 1 (un) cable por grupo, de 1 - 1.5 m. aproximadamente. Tipo DERECHO, NO CRUZADO.
 
-<img src="https://github.com/user-attachments/assets/0bf6f3a8-793a-4239-b576-f15ca4d34aa1" width="200"><br>
+| | | |
+|---|---|---|
+|<img src="https://github.com/user-attachments/assets/0bf6f3a8-793a-4239-b576-f15ca4d34aa1" width="200"><br>|<img src="https://github.com/user-attachments/assets/e3e72264-73f6-4712-9286-8dd5f40d6be4" width="200"><br>|<img src="https://github.com/user-attachments/assets/43d7ecf1-2761-4461-9639-7969dd66467a" width="200"><br>
 
-<img src="https://github.com/user-attachments/assets/e3e72264-73f6-4712-9286-8dd5f40d6be4" width="200"><br>
+#### 3) VERIFICAR la buena construcción de un cable. Para ello, buscar otro grupo e intercambiar cables.
 
-<img src="https://github.com/user-attachments/assets/43d7ecf1-2761-4461-9639-7969dd66467a" width="200"><br>
-
-3) VERIFICAR la buena construcción de un cable. Para ello, buscar otro grupo e intercambiar cables.
-
-Realizarán:
-
-a) Inspección visual para la calidad constructiva (sean extremadamente críticos😈)
+a) Inspección visual para la calidad constructiva
 
 Por lo que se puede ver el cable de nuestros compañeros parece estar en muy buen estado, todos los cables llegan al fondo del conector, tienen la misma longitud y estan bien crimpeados. El capuchon cubre la unión perfectamente lo cual protege bien al cable y pasa con exito el testeo de cables con el tester.
 
@@ -88,8 +82,7 @@ b) Verificación eléctrica utilizando un tester para cables ethernet.
 
 <img src="https://github.com/user-attachments/assets/9d64f49f-fc24-46f7-94bf-6001e4439e1e" width="200"><br>
 
-4) Documentar con que grupo intercambiaron cables (pueden intercambiar más de una vez, no importa,
-mientras no tengan su propio cable). Tomar fotografías que evidencien el proceso técnico de verificación.
+#### 4) Documentar con que grupo intercambiaron cables. Tomar fotografías que evidencien el proceso técnico de verificación.
 
 Grupo The Lords of Pings:
 
@@ -97,28 +90,19 @@ Grupo The Lords of Pings:
 
 https://github.com/user-attachments/assets/7675bf64-da65-45b1-b979-05253304d359
 
-## Parte 2: Equipamiento físico, verificación y utilización de equipos de red y análisis de tráfico.
+---
 
-### Objetivos: 
+### Parte 2: Equipamiento físico, verificación y utilización de equipos de red y análisis de tráfico.
 
-● Tomar contacto con equipamiento físico, reconocer su anatomía, paneles, indicadores, interfaces, etc., y las correspondientes funciones.
+#### 1) Utilizando internet y el datasheet del switch Cisco, documentar las características principales del mismo.
 
-● Poner en funcionamiento un switch empresarial (o configurable).
+Switch CISCO CATALYST 2950 SERIES:<br>
 
-● Análisis de tráfico, comportamiento de ARP, NDP e ICMP.
+| | |
+|---|---|
+|<img src="https://github.com/user-attachments/assets/89f74f5f-bb62-4d36-b74e-922ee695cd16" width="200"><br>|<img src="https://github.com/user-attachments/assets/d1bdd4d0-6202-443c-b306-c784b9fdb66b" width="200"><br>|
 
-● Asignación de direcciones.
-
-### Consignas
-
-1) Utilizando internet y el datasheet del switch Cisco, documentar las características principales del mismo.
-
-    Switch CISCO CATALYST 2950 SERIES:<br>
-   
-   <img src="https://github.com/user-attachments/assets/89f74f5f-bb62-4d36-b74e-922ee695cd16" width="200"><br>
-   <img src="https://github.com/user-attachments/assets/d1bdd4d0-6202-443c-b306-c784b9fdb66b" width="200"><br>
-
-    I. Descripción general:
+_I. Descripción general_
 
     - Switch gestionable (managed) de configuración fija.
     - Diseñado para redes pequeñas y medianas (LAN de acceso).
@@ -130,89 +114,87 @@ https://github.com/user-attachments/assets/7675bf64-da65-45b1-b979-05253304d359
         Web (Cisco Device Manager)
         Cisco Network Assistant
 
-    II. Modelos y puertos
+_II. Modelos y puertos_
 
-    Distintas variantes según cantidad de puertos: 12, 24 o 48 puertos Fast Ethernet (10/100 Mbps)
+Distintas variantes según cantidad de puertos: 12, 24 o 48 puertos Fast Ethernet (10/100 Mbps)
 
-    Uplink: es un puerto de alta capacidad en un switch utilizado para conectarlo con otros dispositivos de red, permitiendo la comunicación con redes superiores.
+Uplink: es un puerto de alta capacidad en un switch utilizado para conectarlo con otros dispositivos de red, permitiendo la comunicación con redes superiores.
 
     Uplinks:
-    Fibra (1000BASE-SX) en modelos SX
-    Cobre (10/100/1000) en modelos T
+    - Fibra (1000BASE-SX) en modelos SX
+    - Cobre (10/100/1000) en modelos T
+    
+    - 2950-12 → 12 puertos
+    - 2950-24 → 24 puertos
+    - 2950T-48 → 48 + uplinks Gigabit cobre
+    - 2950SX-48 → 48 + uplinks fibra
 
-    2950-12 → 12 puertos
-    2950-24 → 24 puertos
-    2950T-48 → 48 + uplinks Gigabit cobre
-    2950SX-48 → 48 + uplinks fibra
-
-    III. Rendimiento
+_III. Rendimiento_
 
     Switching fabric es el sistema interno del switch que mueve los datos entre los puertos.
-
-    Switching fabric: Hasta 13.6 Gbps
-
+    - Switching fabric: Hasta 13.6 Gbps
+    
     Forwarding es el proceso de enviar un paquete desde un puerto de entrada al puerto de salida correcto. Cuántos paquetes puede procesar.
-
-    Forwarding: Hasta 10.1 Mpps
-
+    - Forwarding: Hasta 10.1 Mpps
+    
     Funcionamiento a wire-speed (máximo rendimiento en todos los puertos)
-    Buffer compartido: 8 MB
-    Tabla MAC: hasta 8000 direcciones
+    - Buffer compartido: 8 MB
+    - Tabla MAC: hasta 8000 direcciones
 
-    IV. Funciones de red
-    - Conectividad
-    Soporta:
-        VLANs (IEEE 802.1Q)
-        Trunking (técnica que permite que un mismo enlace físico transporte tráfico de múltiples VLANs. Sirve para conectar switch con switch, switch con router o extender VLANs a través de la red)
-        EtherChannel (agregación de enlaces)
-    - Multicast
+_IV. Funciones de red_
+
+    Conectividad:
+        Soporta VLANs (IEEE 802.1Q)
+        Soporta Trunking (técnica que permite que un mismo enlace físico transporte tráfico de múltiples VLANs. Sirve para conectar switch con switch, switch con router o extender VLANs a través de la red)
+        Soporta EtherChannel (agregación de enlaces)
+    Multicast:
         IGMP Snooping (optimiza tráfico multicast)
 
-    V. Seguridad
+_V. Seguridad_
 
-    Incluye múltiples mecanismos:
+Incluye múltiples mecanismos:
 
-        Port Security (por MAC)
-        802.1X (autenticación por puerto)
-        SSH v2 (acceso seguro)
-        VLAN privada (aislamiento de puertos)
-        Autenticación con:
+    Port Security (por MAC)
+    802.1X (autenticación por puerto)
+    SSH v2 (acceso seguro)
+    VLAN privada (aislamiento de puertos)
+    Autenticación con:
         RADIUS
         TACACS+
 
-    VI. Calidad de servicio (QoS):
+_VI. Calidad de servicio (QoS)_
 
-        Priorización de tráfico (voz, datos críticos)
-        4 colas de salida por puerto
-        Algoritmos:
-            Strict Priority
-            WRR (Weighted Round Robin)
-            Clasificación por CoS (802.1p)
+    Priorización de tráfico (voz, datos críticos)
+    4 colas de salida por puerto
+    Algoritmos:
+        Strict Priority
+        WRR (Weighted Round Robin)
+        Clasificación por CoS (802.1p)
 
-    VII. Gestión y administración:
+_VII. Gestión y administración_
 
-        SNMP (v1, v2, v3)
-        CLI (consola)
-        Web GUI (Cisco Device Manager)
-        Cisco Network Assistant:
-            Configuración masiva
-            Monitoreo
-            Soporte RMON (monitoreo de red)
-            SPAN (análisis de tráfico)
+    SNMP (v1, v2, v3)
+    CLI (consola)
+    Web GUI (Cisco Device Manager)
+    Cisco Network Assistant:
+        Configuración masiva
+        Monitoreo
+        Soporte RMON (monitoreo de red)
+        SPAN (análisis de tráfico)
 
-    VIII. Características físicas:
+_VIII. Características físicas_
 
-        Formato rack 1U
-        Conectores:
-            RJ-45 (UTP)
-            Fibra (MT-RJ en modelos SX)
-            LEDs de estado por puerto
-        Alimentación:
-            100–240V AC
-        Consumo:
-            30W a 45W
+    Formato rack 1U
+    Conectores:
+        RJ-45 (UTP)
+        Fibra (MT-RJ en modelos SX)
+        LEDs de estado por puerto
+    Alimentación:
+        100–240V AC
+    Consumo:
+        30W a 45W
 
-    IX. Estándares soportados
+_IX. Estándares soportados_
 
     IEEE:
         802.3 (Ethernet)
@@ -222,7 +204,7 @@ https://github.com/user-attachments/assets/7675bf64-da65-45b1-b979-05253304d359
         802.1p (QoS)
         802.1X (seguridad)
 
-3) Elaborar checklists (manuales, indicaciones) de procedimientos para las siguientes actividades:
+#### 2) Elaborar checklists (manuales, indicaciones) de procedimientos para las siguientes actividades:
 
 a) Conectar una PC al puerto de consola del switch Cisco a 9600 baudios utilizando PUTTY. Turnense para verificar el acceso a la consola del Switch.
 
@@ -286,9 +268,7 @@ c) Conectar computadoras al switch, configurar una red y testear conectividad.
 
     4) Test de conectividad: hacer ping con otra IP de la red.
 
-3) De a dos o más grupos por switch, conectarán una computadora por cada grupo al mismo utilizando los
-cables que tengan de la parte 1 de este TP. Por el amor de todo lo que es bueno espero que hayan verificado
-bien el cable. Verificar que pueden llegar a la PC de otro grupo usando ping o captura de paquetes.
+#### 2) De a dos o más grupos por switch, conectarán una computadora por cada grupo al mismo utilizando los cables que tengan de la parte 1 de este TP. Verificar que pueden llegar a la PC de otro grupo usando ping o captura de paquetes.
 
 **Nuestra experiencia**: los cables conectaron bien basados en las luces de los puertos pero no llegamos a configurar las IPs de cada PC por lo que los pings que realizamos nunca llegaron a destino.
 
