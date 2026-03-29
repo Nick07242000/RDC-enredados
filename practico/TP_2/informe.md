@@ -11,7 +11,7 @@
 
 **Universidad Nacional de Córdoba - Facultad de Ciencias Exactas Fisicas y Naturales**  
 
-**Teoria de Redes** 
+**Redes de Computadoras** 
 
 **Santiago M. Henn - Facundo N. Oliva Cuneo** 
 
