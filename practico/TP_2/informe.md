@@ -73,7 +73,7 @@ Pasos para construcción de cable con norma T568A/B DERECHO no cruzado:
 
     a. Se corta cable UTP del largo neccesario (en nuestro caso fue de 1.5 m)
 
-    b. Se corta un poco de la cubierta exterior, lo cual deja visible los 3 pares de cables trenzados.
+    b. Se corta un poco de la cubierta exterior, lo cual deja visible los 4 pares de cables trenzados.
 
     c. Se agregan los 2 capuchones.
 
@@ -241,36 +241,26 @@ b) Acceder a las opciones de administración del switch y modificar claves de ac
 
     1) Acceso al modo privilegiado:
 
-    ```
     enable
-    ```
 
     2) Entrar a configuración global:
 
-    ```
     configure terminal
-    ```
 
     3) Cambiar contraseña de modo privilegiado:
 
-    ```
     enable secret NUEVA_CLAVE
-    ```
 
     4) Configurar contraseña de consola:
 
-    ```
     line console 0
     password NUEVA_CLAVE
     login
-    ```
 
     5) Guardar configuración:
 
-    ```
     end
     write memory
-    ```
 
     Nuestra experiencia: Nuestros compañeros pudieron ingresar hasta el prompt pero no se sabian las contraseñas por lo que no se pudo seguir con la configuración.
 
