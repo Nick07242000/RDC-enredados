@@ -241,26 +241,26 @@ b) Acceder a las opciones de administración del switch y modificar claves de ac
 
     1) Acceso al modo privilegiado:
 
-    enable
+    > enable
 
     2) Entrar a configuración global:
 
-    configure terminal
+    > configure terminal
 
     3) Cambiar contraseña de modo privilegiado:
 
-    enable secret NUEVA_CLAVE
+    > enable secret NUEVA_CLAVE
 
     4) Configurar contraseña de consola:
 
-    line console 0
-    password NUEVA_CLAVE
-    login
+    > line console 0
+    > password NUEVA_CLAVE
+    > login
 
     5) Guardar configuración:
 
-    end
-    write memory
+    > end
+    > write memory
 
     Nuestra experiencia: Nuestros compañeros pudieron ingresar hasta el prompt pero no se sabian las contraseñas por lo que no se pudo seguir con la configuración.
 
