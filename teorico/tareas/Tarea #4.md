@@ -24,12 +24,19 @@ _18.3. ¿Cuáles son los pros y los contras de limitar el reensamblado a los sis
 
 Pros:
 - Permite el uso del encaminamiento dinamico, ya que los fragmentos de un mismo datagrama no precisan pasar a traves del mismo dispositivo de encaminamiento de salida.
-- Evita que los dispositivos de encaminamiento consuman recursos excesivos en memorias temporales para almecenar datagramas parciales
+- Evita que los dispositivos de encaminamiento consuman recursos excesivos en memorias temporales para almecenar datagramas parciales.
 
 Contras:
 - Los fragmentos sólo se pueden hacer más pequeños a medida que los datos se mueven a través del conjunto de redes, por lo que no se puede optimizar el tamaño de las unidades de datos para la siguiente red en la ruta, posiblemente disminuyendo eficiencia de transmision al generar mucho overhead de cabeceras.
 
 _18.4. Explique la función de los tres indicadores en la cabecera de IPv4._
+
+Solamente dos bits están actualmente definidos. 
+- El bit de `mas datos` se utiliza para la fragmentacion y el reensamblado.
+- El bit de `no fragmentacion` prohibe la fragmentacion cuando es 1.
+   - Este puede ser util si se conoce que el destino no tiene capacidad de reensamblar fragmentos.
+   - Si vale 1, el datagrama se descartara si se excede el tamaño maximo de una red en la ruta.
+   - Cuando vale 1, es aconsejable utilizar encaminamiento desde el origen para evitar redes con tamaño de paquete maximos pequeños.
 
 _18.5. ¿Cómo se calcula la suma de comprobación de la cabecera de IPv4?_
 
@@ -37,7 +44,7 @@ _18.6. ¿Qué diferencia existe entre los campos clase de tráfico y etiqueta de
 
 _18.7. Explique brevemente los tres tipos de direcciones IPv6._
 
-18.8. ¿Cuál es el propósito de cada uno de los tipos de cabeceras presentes en IPv6?
+_18.8. ¿Cuál es el propósito de cada uno de los tipos de cabeceras presentes en IPv6?_
 
 ---
 
