@@ -98,6 +98,23 @@ Tambien podria usarse cuando no se desea fragmentar la informacion, para evitar 
 
 _18.5. Un datagrama de 4.480 octetos se va a transmitir y se necesita fragmentar ya que va a pasar por una red Ethernet con un campo máximo de carga útil de 1.500 octetos. Muestre los valores de los campos longitud total, indicador de más segmentos y desplazamiento de fragmento en cada uno de los fragmentos resultantes._
 
+Consideramos una cabecera IP estandar de 20 octetos. De los 4.480 octetos, 4.460 son carga util, 20 son de cabecera. Dado que la red impone un limite de 1.500, cada fragmento puede transportar un maximo de 1.480 datos + 20 cabecera. 1.480 es divisible por 8, cumpliendo que el desplazamiento sea un multiplo de 64 bits.
+
+El primer fragmento tiene una longitud de 1.500. El indicador de mas datos se establece en 1 para señalar que existen mas fragmentos. El desplazamiento de fragmento es 0.
+
+El segundo fragmento tiene una longitud de 1.500. El indicador de mas datos es 1. El desplazamiento de fragmento es 185, que se obtiene al dividir 1.480 por 8.
+
+El tercer fragmento tiene una longitud de 1.500. El indicador de mas datos es 1. El desplazamiento de fragmento es 370, obtenido al dividir 2.960 por 8.
+
+El ultimo fragmento transporta los 20 restantes de la carga util original. Su longitud total es de 40 al sumar la cabecera. El indicador de mas datos se establece en 0 para indicar el fin de la secuencia. El desplazamiento de fragmento es 555, obtenido al dividir 4.440 por 8.
+
+|Fragmento|Longitud|Mas Frags|Desplazamiento|
+|---|---|---|---|
+|1|1500|1|0|
+|2|1500|1|185|
+|3|1500|1|370|
+|4|40|0|555|
+
 _18.7. Se va a segmentar un datagrama. ¿Qué opciones del campo de opción se necesitan copiar en la cabecera de cada fragmento y cuáles se necesitan copiar sólo en el primer fragmento? Justifique el tratamiento de cada opción._
 
 _18.8. Un mensaje de la capa de transporte, que contiene 1.500 bits de datos y 160 bits de cabecera, se envía a la capa internet, la cual incorpora otros 160 bits de cabecera. El resultado se transmite a través de dos redes que utilizan cada una 24 bits de cabecera de paquete. La red destino tiene un tamaño de paquete máximo de 800 bits. ¿Cuántos bits, incluyendo cabeceras, se entregan al protocolo de la capa de red en el destino?_
