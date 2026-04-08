@@ -98,7 +98,7 @@ Tambien podria usarse cuando no se desea fragmentar la informacion, para evitar 
 
 _18.5. Un datagrama de 4.480 octetos se va a transmitir y se necesita fragmentar ya que va a pasar por una red Ethernet con un campo máximo de carga útil de 1.500 octetos. Muestre los valores de los campos longitud total, indicador de más segmentos y desplazamiento de fragmento en cada uno de los fragmentos resultantes._
 
-Consideramos una cabecera IP estandar de 20 octetos. De los 4.480 octetos, 4.460 son carga util, 20 son de cabecera. Dado que la red impone un limite de 1.500, cada fragmento puede transportar un maximo de 1.480 datos + 20 cabecera. 1.480 es divisible por 8, cumpliendo que el desplazamiento sea un multiplo de 64 bits.
+Consideramos una cabecera IP estandar de 20 octetos. De los 4.480 octetos, 20 son de cabecera. Dado que la red impone un limite de 1.500, cada fragmento puede transportar un maximo de 1.480 datos + 20 cabecera. 1.480 es divisible por 8, cumpliendo que el desplazamiento sea un multiplo de 64 bits.
 
 El primer fragmento tiene una longitud de 1.500. El indicador de mas datos se establece en 1 para señalar que existen mas fragmentos. El desplazamiento de fragmento es 0.
 
