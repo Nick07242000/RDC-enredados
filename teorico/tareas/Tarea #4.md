@@ -117,6 +117,17 @@ El ultimo fragmento transporta los 20 restantes de la carga util original. Su lo
 
 _18.7. Se va a segmentar un datagrama. ¿Qué opciones del campo de opción se necesitan copiar en la cabecera de cada fragmento y cuáles se necesitan copiar sólo en el primer fragmento? Justifique el tratamiento de cada opción._
 
+La necesidad de copiar una opcion en todos los fragmentos depende de si la informacion es vital para el encaminamiento o la seguridad de cada unidad de datos individual. 
+
+Todos los fragmentos:
+- La seguridad se copia se incluye en todos porque los dispositivos de red deben aplicar los mismos controles de proteccion a cada fragmento.
+- El encaminamiento en el origen se incluye en todos para garantizar que cada parte siga la ruta exacta especificada.
+- La identificacion de la secuencia se incluye en todos para que la red mantenga el tratamiento especial para todo el flujo de datos.
+
+Solo el primero:
+- El registro de la ruta solo se incluye en el primero porque auditar el camino de todos los segmentos generaria una sobrecarga en los dispositivos de encaminamiento.
+- Las marcas de tiempo solo se incluyen en el primero por eficiencia, ya que no es necesario conocer el tiempo exacto de paso de cada fragmento la mayoria de las veces.
+
 _18.8. Un mensaje de la capa de transporte, que contiene 1.500 bits de datos y 160 bits de cabecera, se envía a la capa internet, la cual incorpora otros 160 bits de cabecera. El resultado se transmite a través de dos redes que utilizan cada una 24 bits de cabecera de paquete. La red destino tiene un tamaño de paquete máximo de 800 bits. ¿Cuántos bits, incluyendo cabeceras, se entregan al protocolo de la capa de red en el destino?_
 
 _18.11. Compare los campos individuales de la cabecera IPv4 con los de la cabecera IPv6. Compare las posibilidades proporcionadas por cada uno de los campos de IPv4 con los de IPv6._
