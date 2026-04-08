@@ -46,6 +46,12 @@ El valor final que se coloca en el campo es el complemento a uno del resultado d
 
 _18.6. ¿Qué diferencia existe entre los campos clase de tráfico y etiqueta de flujo en la cabecera de IPv6?_
 
+El campo clase de trafico consta de 8 bits que permiten a una fuente identificar las caracteristicas en el tratamiento de trafico que desea cada paquete en relacion con otros paquetes procedentes de la misma fuente, pero actualmente se usa con otra intencion. Los primeros 6 bits se denominan campo de servicios diferenciados, y los 2 restantes se reservan para un campo de notificacion explicita de congestion
+
+El campo etiqueta de flujo consta de 20 bits que permite identificar a un flujo en particular, donde un flujo es una secuencia de paquetes enviados desde un origen particular a un destino particular, para los que se solicita un tratamiento especial por parte de los dispositivos de red
+
+La diferencia esta en que la clase de trafico agrupa paquetes por categorias de clases o prioridades, mientras que la etiqueta de flujo esta enfocada en gestionar flujos individuales y especificos como la transmision de un video en tiempo real.
+
 _18.7. Explique brevemente los tres tipos de direcciones IPv6._
 
 _18.8. ¿Cuál es el propósito de cada uno de los tipos de cabeceras presentes en IPv6?_
