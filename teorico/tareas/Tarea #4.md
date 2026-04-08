@@ -130,6 +130,12 @@ Solo el primero:
 
 _18.8. Un mensaje de la capa de transporte, que contiene 1.500 bits de datos y 160 bits de cabecera, se envía a la capa internet, la cual incorpora otros 160 bits de cabecera. El resultado se transmite a través de dos redes que utilizan cada una 24 bits de cabecera de paquete. La red destino tiene un tamaño de paquete máximo de 800 bits. ¿Cuántos bits, incluyendo cabeceras, se entregan al protocolo de la capa de red en el destino?_
 
+El datagrama original que llega a la capa internet tiene un tamaño total de 1.820 bits (1.500 + 160 + 160). Cuando este se intenta transmitir por la red destino que impone un limite de 800 bits, la unidad de datos IP debe fragmentarse para cumplir con este parametro.
+
+La carga util de cada fragmento a excepcion del ultimo debe ser un multiplo de 64 bits para que el campo de desplazamiento pueda indicar la posicion correcta. Al restar los 160 bits de la cabecera IP al limite de 800 bits de la red, obtenemos una capacidad maxima de 640 bits para datos por fragmento, y 640 es un multiplo exacto de 64. Los 1.660 bits de datos se dividen en dos fragmentos de 640 y un final de 380.
+
+En el destino, las cabeceras de las redes individuales de 24 bits se eliminan antes de llegar al protocolo de la capa de red. Los bits que se entregan son unicamente los de los fragmentos IP completos. Los dos primeros tienen un tamaño de 800 bits cada uno y el tercer fragmento tiene un tamaño de 540 bits, por lo que el total de bits entregados al protocolo de la capa de red en el destino es de 2.140 bits.
+
 _18.11. Compare los campos individuales de la cabecera IPv4 con los de la cabecera IPv6. Compare las posibilidades proporcionadas por cada uno de los campos de IPv4 con los de IPv6._
 
 _18.12. Justifique el orden recomendado de las cabeceras de extensión de IPv6 (por ejemplo, ¿por qué va primero la cabecera de opciones salto-a-salto?, ¿por qué la cabecera de encaminamiento está antes que la cabecera de fragmentación?, y así hasta la cabecera final)._
