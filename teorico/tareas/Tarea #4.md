@@ -54,6 +54,12 @@ La diferencia esta en que la clase de trafico agrupa paquetes por categorias de 
 
 _18.7. Explique brevemente los tres tipos de direcciones IPv6._
 
+La direccion de unidifusion funciona como un identificador para una interfaz individual de modo que los paquetes enviados a esta direccion llegan unicamente a ese destino especifico.
+
+La direccion de monodifusion se asigna a un conjunto de interfaces que generalmente pertenecen a nodos distintos. En esta modalidad el paquete se entrega a una sola interfaz del grupo siendo seleccionada aquella que se encuentre mas cercana segun la metrica del protocolo de encaminamiento.
+
+La direccion de multidifusion identifica igualmente a un conjunto de interfaces que suelen estar ubicadas en diferentes nodos de la red. El funcionamiento consiste en entregar el paquete a todas las interfaces identificadas por esa direccion de grupo de forma simultanea.
+
 _18.8. ¿Cuál es el propósito de cada uno de los tipos de cabeceras presentes en IPv6?_
 
 ---
