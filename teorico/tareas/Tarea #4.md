@@ -40,6 +40,10 @@ Solamente dos bits están actualmente definidos.
 
 _18.5. ¿Cómo se calcula la suma de comprobación de la cabecera de IPv4?_
 
+Para iniciar el proceso, el campo de la suma de comprobacion debe inicializarse con un valor de todo ceros. 
+El procedimiento tecnico consiste en realizar la suma en complemento a uno de todas las palabras de 16 bits contenidas en dicha cabecera. 
+El valor final que se coloca en el campo es el complemento a uno del resultado de esa suma acumulada
+
 _18.6. ¿Qué diferencia existe entre los campos clase de tráfico y etiqueta de flujo en la cabecera de IPv6?_
 
 _18.7. Explique brevemente los tres tipos de direcciones IPv6._
