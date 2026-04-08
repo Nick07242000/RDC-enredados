@@ -14,6 +14,12 @@ El reensamblado es necesario al fragmentar, ya que este es el proceso realizado 
 
 _18.2. Enumere los requisitos de un mecanismo de interconexión de redes._
 
+1. Proporcionar un enlace entre redes. Como minimo, se necesita una conexion física y de control del enlace.
+2. Proporcionar el encaminamiento y entrega de los datos entre procesos en diferentes redes.
+3. Proporcionar un servicio de contabilidad que realice un seguimiento de la utilizacion de las diferentes redes y dispositivos de encaminamiento y mantenga informacion de estado.
+4. Proporcionar los servicios mencionados de forma que no se requiera la modificacion de la arquitectura de red de cualquiera de las redes interconectadas. Es decir que el sistema
+de interconexion entre redes se debe acomodar a las diversas diferencias existentes entre las distintas redes.
+
 _18.3. ¿Cuáles son los pros y los contras de limitar el reensamblado a los sistemas finales en lugar de permitirlo en los dispositivos de encaminamiento?_
 
 _18.4. Explique la función de los tres indicadores en la cabecera de IPv4._
