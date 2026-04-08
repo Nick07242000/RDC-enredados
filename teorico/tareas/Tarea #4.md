@@ -76,6 +76,12 @@ _18.8. ¿Cuál es el propósito de cada uno de los tipos de cabeceras presentes 
 
 _18.1. En la discusión sobre IP, se mencionó que el identificador, el indicador de no fragmentar y el tiempo de vida se hallan presentes en la primitiva Send pero no en la primitiva Deliver, ya que esos parámetros no son competencia de IP. Indique, para cada una de estas primitivas, si es competencia de la entidad IP en el origen, de la entidad IP en cada dispositivo de encaminamiento intermedio o de la entidad IP en el sistema final destino. Justifique su respuesta._
 
+El identificador es competencia del destino porque es el encargado de reensamblar los fragmentos al paquete original, y este campo identifica de una forma unica a la unidad de datos. El origen setea este campo para generar esta identificacion unica, y a los dispositivos de encaminamiento intermedios no les incumbe ya que estos no reensamblan el paquete.
+
+El indicador de no fragmentacion es competencia de los dispositivos de encaminamiento intermedios, ya que este indica a estos que tiene prohibido fragmentar el paquete, y que deben descartarlo si el datagrama es demasiado grande para la siguiente red e informar al origen mediante un mensaje de error. El origen solo lo setea, mientras que no tiene utilidad para el destino.
+
+El tiempo de vida es competencia de los dispositivos de encaminamiento intermedios, ya que estos lo decrementan en cada salto, y si el contador llega a cero el enrutador elimina el datagrama y lo notifica mediante ICMP. El origen solo lo setea, mientras que no tiene utilidad en el destino porque es un mecanismo exclusivo de la capa de red para asegurar la estabilidad del conjunto de redes.
+
 _18.2. ¿Cuál es la información suplementaria de la cabecera en el protocolo IP?_
 
 _18.3. Describa algunas circunstancias en las que sería deseable utilizar encaminamiento en el origen en lugar de dejar a los dispositivos de encaminamiento que realicen la decisión de encaminamiento._
