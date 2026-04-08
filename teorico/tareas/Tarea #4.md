@@ -62,6 +62,14 @@ La direccion de multidifusion identifica igualmente a un conjunto de interfaces 
 
 _18.8. ¿Cuál es el propósito de cada uno de los tipos de cabeceras presentes en IPv6?_
 
+- La cabecera IPv6 contiene la informacion esencial para el encaminamiento y gestion del paquete.
+- La cabecera de opciones salto a salto define opciones especiales que requieren procesamiento en cada salto.
+- La cabecera de encaminamiento proporciona un encaminamiento ampliado, similar al encaminamiento en el origen de IPv4.
+- La cabecera de fragmentacion contiene informacion de fragmentacion y reensamblado.
+- La cabecera de autenticacion proporciona la integridad del paquete y la autenticacion.
+- La cabecera de encapsulamiento de la carga de seguridad proporciona privacidad.
+- La cabecera de las opciones para el destino contiene informacion opcional para que sea examinada en el nodo destino.
+
 ---
 
 ### Ejercicios
