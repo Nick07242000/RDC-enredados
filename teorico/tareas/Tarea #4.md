@@ -84,6 +84,10 @@ El tiempo de vida es competencia de los dispositivos de encaminamiento intermedi
 
 _18.2. ¿Cuál es la información suplementaria de la cabecera en el protocolo IP?_
 
+La informacion suplementaria en la cabecera IPv4 esta en el campo de opciones de longitud variable. Este permite integrar parametros opcionales como etiquetas de seguridad o el encaminamiento en el origen. Tambien incluye el registro de la ruta para conocer el camino seguido, la identificacion de la secuencia para trafico periodico como voz y las marcas de tiempo para registrar el paso por cada nodo. Se añade relleno para garantizar que la cabecera sea multiplo de 32 bits.
+
+La informacion suplementaria en la cabecera IPv6 esta en cabeceras de extension entre la cabecera base y la unidad de datos. Los principales son las opciones salto a salto que examina cada nodo del camino y la cabecera de encaminamiento con la lista de estaciones intermedias. Tambien existen cabeceras especificas para el control de la fragmentacion por parte del origen, mecanismos de seguridad para autenticacion y privacidad, y opciones destinadas solo al examen del nodo destino final.
+
 _18.3. Describa algunas circunstancias en las que sería deseable utilizar encaminamiento en el origen en lugar de dejar a los dispositivos de encaminamiento que realicen la decisión de encaminamiento._
 
 _18.5. Un datagrama de 4.480 octetos se va a transmitir y se necesita fragmentar ya que va a pasar por una red Ethernet con un campo máximo de carga útil de 1.500 octetos. Muestre los valores de los campos longitud total, indicador de más segmentos y desplazamiento de fragmento en cada uno de los fragmentos resultantes._
