@@ -6,9 +6,9 @@
 
 _18.1. Dé algunas razones para usar fragmentación y reensamblado._
 
-La fragmentacion es necesaria cuando las redes de comunicaciones imponen un tamaño máximo de bloque para la aceptacion de datos, lo que obliga a dividir los mensajes originales en unidades mas pequeñas denominadas fragmentos o segmentos. 
+La fragmentacion es necesaria porque las redes de comunicaciones imponen un tamaño máximo de bloque para la aceptacion de datos, lo que obliga a dividir los mensajes originales en unidades mas pequeñas denominadas fragmentos o segmentos. 
 
-Fragmentar tambien tiene muchos beneficios, como permitir un control de errores más eficiente al reducir la cantidad de bits que deben retransmitirse ante un fallo, y facilitar un acceso más equitativo al medio de transmisión al evitar que una sola estación monopolice los recursos de red. Ademas, el uso de unidades de datos reducidas permite a los receptores gestionar memorias temporales mas pequeñas y facilita la implementación de puntos de control periódicos para operaciones de reinicio y recuperación. 
+Fragmentar tambien tiene muchos beneficios, como permitir un control de errores más eficiente al reducir la cantidad de bits que se necesitan retransmitir ante un fallo, y facilitar un acceso más equitativo al medio de transmisión al evitar que una sola estación monopolice los recursos de red. Ademas, el uso de unidades de datos reducidas permite a los receptores gestionar memorias temporales mas pequeñas y facilita la implementación de puntos de control periódicos para operaciones de reinicio y recuperación. 
 
 El reensamblado es necesario al fragmentar, ya que este es el proceso realizado en el destino para reconstruir los fragmentos recibidos y recuperar la información original para el nivel de aplicacion. Ambos procesos van de la mano, al realizar el primero debe realizarse el segundo.
 
@@ -21,6 +21,13 @@ _18.2. Enumere los requisitos de un mecanismo de interconexión de redes._
 de interconexion entre redes se debe acomodar a las diversas diferencias existentes entre las distintas redes.
 
 _18.3. ¿Cuáles son los pros y los contras de limitar el reensamblado a los sistemas finales en lugar de permitirlo en los dispositivos de encaminamiento?_
+
+Pros:
+- Permite el uso del encaminamiento dinamico, ya que los fragmentos de un mismo datagrama no precisan pasar a traves del mismo dispositivo de encaminamiento de salida.
+- Evita que los dispositivos de encaminamiento consuman recursos excesivos en memorias temporales para almecenar datagramas parciales
+
+Contras:
+- Los fragmentos sólo se pueden hacer más pequeños a medida que los datos se mueven a través del conjunto de redes, por lo que no se puede optimizar el tamaño de las unidades de datos para la siguiente red en la ruta, posiblemente disminuyendo eficiencia de transmision al generar mucho overhead de cabeceras.
 
 _18.4. Explique la función de los tres indicadores en la cabecera de IPv4._
 
