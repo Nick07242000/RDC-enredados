@@ -90,6 +90,12 @@ La informacion suplementaria en la cabecera IPv6 esta en cabeceras de extension 
 
 _18.3. Describa algunas circunstancias en las que sería deseable utilizar encaminamiento en el origen en lugar de dejar a los dispositivos de encaminamiento que realicen la decisión de encaminamiento._
 
+Una de las razones principales es la seguridad. Al definir la ruta desde el origen, se puede asegurar que se atraviesen unicamente redes autorizadas para manejar informacion sensible, evitando nodos que podrian no ser confiables. 
+
+Tambien es util por motivos de prioridad o para satisfacer requisitos especificos de calidad de servicio, buscando un tratamiento especial o caminos con menor retardo para trafico de voz por ejemplo.
+
+Tambien podria usarse cuando no se desea fragmentar la informacion, para evitar redes con unidades de transferencia pequeñas y asi evitar el descarte de la informacion.
+
 _18.5. Un datagrama de 4.480 octetos se va a transmitir y se necesita fragmentar ya que va a pasar por una red Ethernet con un campo máximo de carga útil de 1.500 octetos. Muestre los valores de los campos longitud total, indicador de más segmentos y desplazamiento de fragmento en cada uno de los fragmentos resultantes._
 
 _18.7. Se va a segmentar un datagrama. ¿Qué opciones del campo de opción se necesitan copiar en la cabecera de cada fragmento y cuáles se necesitan copiar sólo en el primer fragmento? Justifique el tratamiento de cada opción._
