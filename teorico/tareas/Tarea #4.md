@@ -6,6 +6,12 @@
 
 _18.1. Dé algunas razones para usar fragmentación y reensamblado._
 
+La fragmentación es necesaria cuando las redes de comunicaciones imponen un tamaño máximo de bloque para la aceptación de datos, lo que obliga a dividir los mensajes originales en unidades más pequeñas denominadas fragmentos o segmentos. 
+
+En terminos de beneficios, fragmentar permite un control de errores más eficiente al reducir la cantidad de bits que deben retransmitirse ante un fallo, y facilita un acceso más equitativo al medio de transmisión al evitar que una sola estación monopolice los recursos de red. Ademas, el uso de unidades de datos reducidas permite a los receptores gestionar memorias temporales mas pequeñas y facilita la implementación de puntos de control periódicos para operaciones de reinicio y recuperación. 
+
+El reensamblado es necesario si se realiza fragmentacion, ya que este es el proceso realizado en el destino para reconstruir los fragmentos recibidos y recuperar la información original para el nivel de aplicación. Ambos procesos van de la mano, al realizar el primero debe realizarse el segundo.
+
 _18.2. Enumere los requisitos de un mecanismo de interconexión de redes._
 
 _18.3. ¿Cuáles son los pros y los contras de limitar el reensamblado a los sistemas finales en lugar de permitirlo en los dispositivos de encaminamiento?_
