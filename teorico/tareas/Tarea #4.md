@@ -156,18 +156,22 @@ _18.12. Justifique el orden recomendado de las cabeceras de extensión de IPv6 (
 El orden está diseñado para que los nodos intermedios (enrutadores) no tengan que procesar más de lo estrictamente necesario, mejorando la eficiencia:
 
 Opciones Salto a Salto: Debe ir primero porque es la única que todos los nodos del camino deben examinar obligatoriamente.
-Cabecera de Encaminamiento: Se procesa antes que la fragmentación para determinar la ruta que debe seguir el paquete completo.
-Cabecera de Fragmentación: Va antes de las de seguridad porque el reensamblado debe ocurrir antes de poder desencriptar o autenticar el contenido.
-Autenticación y ESP: Protegen la carga útil; se colocan antes de las opciones de destino para asegurar que estas no hayan sido alteradas.
-Opciones para el Destino: Se colocan al final porque solo el nodo receptor final debe leerlas y procesarlas.
+Cabecera de Encaminamiento: Se coloca antes que la fragmentación para que los nodos intermedios puedan determinar la ruta del paquete completo antes de que sea procesado por el destino
+Cabecera de Fragmentación: Debe aparecer antes de las opciones de destino porque el nodo receptor necesita reensamblar todas las PDU antes de poder interpretar el mensaje original.
+Opciones para el Destino: Se ubica al final de la cadena de extensiones porque su contenido solo debe ser examinado por el sistema destino final
 
 _18.16. Las especificaciones originales de IPv6 combinaban los campos de etiqueta de flujo y prioridad en un solo campo de etiqueta de flujo de 28 bits. Esto permitía a los flujos redefinir la interpretación de los diferentes valores de prioridad. Sugiera una razón por la que la especificación final incluye un campo de prioridad en un campo distinto.
 
-La razón principal es la eficiencia del hardware de los routers es que al mantener la Clase de Tráfico (8 bits) separada, los routers pueden identificar la prioridad del paquete de forma instantánea y uniforme para todo el tráfico.
-Si estuviera integrada en la Etiqueta de Flujo, el router tendría que realizar un procesamiento mucho más complejo para interpretar qué prioridad tiene cada flujo específico, lo que ralentizaría la conmutación de paquetes en el núcleo de la red.
+La separación de estos campos responde a la necesidad de eficiencia en la conmutación de paquetes:
+
+- El campo Clase de Tráfico permite a los routers identificar y aplicar políticas de prioridad de forma uniforme y rápida a nivel de hardware.
+
+- Si la prioridad estuviera dentro de la Etiqueta de Flujo, el router tendría que realizar una búsqueda más profunda y costosa en su tabla de estados para cada flujo individual, lo que aumentaría la latencia en el procesamiento de paquetes en tiempo real.
 
 _18.17. Para el encaminamiento IPv6 tipo 0, especifique el algoritmo para actualizar las cabeceras IPv6 y de encaminamiento en los nodos intermedios._
 Cuando un nodo intermedio recibe un paquete con una cabecera de encaminamiento tipo 0, ejecuta el siguiente proceso:
+
+Al procesar una cabecera de encaminamiento tipo 0, el nodo intermedio sigue este procedimiento técnico:
 
 Verificación: El nodo comprueba el campo Segmentos Restantes. Si es 0, el nodo procesa la siguiente cabecera.
 Actualización de Dirección: Si es mayor a 0, el nodo toma la siguiente dirección de la lista (calculada como N - Segmentos Restantes) y la intercambia con la Dirección de Destino de la cabecera base de IPv6.
