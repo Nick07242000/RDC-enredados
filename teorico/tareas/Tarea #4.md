@@ -140,34 +140,40 @@ _18.11. Compare los campos individuales de la cabecera IPv4 con los de la cabece
 
 La transición de IPv4 a IPv6 no solo aumentó el espacio de direcciones, sino que simplificó la cabecera para agilizar el procesamiento en los routers.
 
-|Campo IPv4|Equivalente en IPv6|Cambio / Mejora|
+|Campo IPv4|Equivalente en IPv6|Cambio/Mejora|
 |---|---|---|
 |Versión|Versión|Se mantiene igual (4 bits)|
-|IHL (Longitud cabecera)|Eliminado|IPv6 tiene una longitud fija de 40 octetos|
-|Tipo de Servicio (ToS)|Clase de Tráfico|Mantiene la funcionalidad de prioridad y gestión de congestión|
+|IHL|Eliminado|IPv6 tiene una longitud fija de 40 octetos|
+|Tipo de Servicio|Clase de Tráfico|Mantiene la funcionalidad de prioridad y gestión de congestión|
 |Longitud Total|Longitud de Carga Útil|En IPv6 no incluye la cabecera base, solo los datos y extensiones|
-|Identificación/Flags|Cabecera de Fragmentación|Se movieron a una cabecera de extensión opcional|
-|Tiempo de Vida (TTL)|Límite de Saltos|Nombre más preciso; indica cuántos nodos puede saltar el paquete|
+|Identificación - Indicadores|Cabecera de Fragmentación|Se movieron a una cabecera de extensión opcional|
+|Desplazamiento|Cabecera de Fragmentacion|Movido a cabecera de extension opcional|
+|Tiempo de Vida|Límite de Saltos|Nombre más preciso; indica cuántos nodos puede saltar el paquete|
 |Protocolo|Cabecera Siguiente|Identifica el tipo de cabecera de extensión o el protocolo superior (TCP/UDP)|
 |Suma de Comprobación|Eliminado|Se eliminó para mejorar la velocidad, confiando en las capas 2 y 4|
+|Direccion origen|Direccion origen|Aumenta de 32 a 128 bits|
+|Direccion destino|Direccion destino|Aumenta a 128 bits|
 |Opciones|Cabeceras de Extensión|Permite una mayor flexibilidad sin penalizar el rendimiento básico|
 
 _18.12. Justifique el orden recomendado de las cabeceras de extensión de IPv6 (por ejemplo, ¿por qué va primero la cabecera de opciones salto-a-salto?, ¿por qué la cabecera de encaminamiento está antes que la cabecera de fragmentación?, y así hasta la cabecera final)._
 
-El orden está diseñado para que los nodos intermedios (enrutadores) no tengan que procesar más de lo estrictamente necesario, mejorando la eficiencia:
+El orden está diseñado para que los nodos intermedios no tengan que procesar más de lo estrictamente necesario mejorando la eficiencia.
 
-- Opciones Salto a Salto: Debe ir primero porque es la única que todos los nodos del camino deben examinar obligatoriamente.
-- Cabecera de Encaminamiento: Se coloca antes que la fragmentación para que los nodos intermedios puedan determinar la ruta del paquete completo antes de que sea procesado por el destino
-- Cabecera de Fragmentación: Debe aparecer antes de las opciones de destino porque el nodo receptor necesita reensamblar todas las PDU antes de poder interpretar el mensaje original.
-- Opciones para el Destino: Se ubica al final de la cadena de extensiones porque su contenido solo debe ser examinado por el sistema destino final
+Las cabecera de opciones salto a salto debe ir primero porque es la única que todos los nodos del camino deben examinar obligatoriamente.
+
+Las cabeceras de opciones para el destino pueden aparecer en dos lugares, antes de la de encaminamiento si sus parametros deben ser leidos por los nodos intermedios de la ruta, o al final de la cadena si son exclusivos para el receptor final.
+
+La cabecera de encaminamiento se coloca antes que la fragmentación para que los nodos intermedios puedan determinar la ruta del paquete completo antes de que sea procesado por el destino.
+
+La cabecera de autenticacion y la de encapsulado de la carga util de seguridad (ESP) siguen a las de transito para validar la integridad y cifrar el contenido de la carga util de la capa de transporte junto con las opciones de destino final.
 
 _18.16. Las especificaciones originales de IPv6 combinaban los campos de etiqueta de flujo y prioridad en un solo campo de etiqueta de flujo de 28 bits. Esto permitía a los flujos redefinir la interpretación de los diferentes valores de prioridad. Sugiera una razón por la que la especificación final incluye un campo de prioridad en un campo distinto._
 
-La separación de estos campos responde a la necesidad de eficiencia en la conmutación de paquetes:
+La separación de estos campos responde a la necesidad de eficiencia en la conmutación de paquetes.
 
-- El campo Clase de Tráfico permite a los routers identificar y aplicar políticas de prioridad de forma uniforme y rápida a nivel de hardware.
+El campo Clase de Tráfico permite a los routers identificar y aplicar políticas de prioridad de forma uniforme y rápida a nivel de hardware.
 
-- Si la prioridad estuviera dentro de la Etiqueta de Flujo, el router tendría que realizar una búsqueda más profunda y costosa en su tabla de estados para cada flujo individual, lo que aumentaría la latencia en el procesamiento de paquetes en tiempo real.
+Si la prioridad estuviera dentro de la Etiqueta de Flujo, el router tendría que realizar una búsqueda más profunda y costosa en su tabla de estados para cada flujo individual, lo que aumentaría la latencia en el procesamiento de paquetes en tiempo real.
 
 _18.17. Para el encaminamiento IPv6 tipo 0, especifique el algoritmo para actualizar las cabeceras IPv6 y de encaminamiento en los nodos intermedios._
 
