@@ -101,23 +101,23 @@ Nuestro grupo trabajo con PC3 y PC4 para la realizacion de esta experiencia:
 
 Comenzamos realizando una conexion por medio de SSH hacia la maquina virtual de PC3, utilizando el comando `ssh -i public_key.pem pc-alumnos-3@4.206.219.90`:
 
-<img width="1132" height="252" alt="image" src="https://github.com/user-attachments/assets/addb16e6-9e01-4da8-957c-04703dda72b6" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/addb16e6-9e01-4da8-957c-04703dda72b6" />
 
 Una vez conectados documentamos nuestro paso por la VM generando una carpeta con el nombre de nuestro grupo.
 
-<img width="944" height="109" alt="image" src="https://github.com/user-attachments/assets/cc52396d-1ffd-4d5c-a731-ee3672a24f34" />
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/cc52396d-1ffd-4d5c-a731-ee3672a24f34" />
 
 ### Analisis de Paquete
 
 A continuacion utilizamos Wireshark para capturar el trafico SSH entre la PC propia y la maquina virtual remota:
 
-<img width="1074" height="397" alt="image" src="https://github.com/user-attachments/assets/3158a343-22f9-45c3-84f8-4d1def4e78af" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/3158a343-22f9-45c3-84f8-4d1def4e78af" />
 
 Escogimos un paquete y analizamos el contenido:
 
-<img width="1198" height="381" alt="image" src="https://github.com/user-attachments/assets/f893ac4c-92c9-4778-b1b8-24f00fa47715" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/f893ac4c-92c9-4778-b1b8-24f00fa47715" />
 
-<img width="1083" height="592" alt="image" src="https://github.com/user-attachments/assets/334f25a6-ed33-4c1a-a153-0028ec5de3cd" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/334f25a6-ed33-4c1a-a153-0028ec5de3cd" />
 
 Observamos como no podemos visualizar la seccion de data en el mismo, y como logramos visualizar y descifrar el contenido.
 
@@ -129,44 +129,44 @@ Luego utilizamos netcat para desplegar servidores simples y capturar trafico.
 
 Primero montamos un servidor TCP en el puerto 5050 de la maquina virtual:
 
-<img width="870" height="34" alt="image" src="https://github.com/user-attachments/assets/9dde20d6-2c58-4a99-b433-ade93a05894f" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/9dde20d6-2c58-4a99-b433-ade93a05894f" />
 
 Desde nuestra computadora local nos conectamos al servidor:
 
-<img width="502" height="69" alt="image" src="https://github.com/user-attachments/assets/a70c4075-4e53-419a-b416-cd4a14082dfd" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/a70c4075-4e53-419a-b416-cd4a14082dfd" />
 
 Aqui enviamos un mensaje que es recibido en el servidor:
 
-<img width="504" height="98" alt="image" src="https://github.com/user-attachments/assets/896f23e7-9720-41fc-9b25-84a466bcf0a2" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/896f23e7-9720-41fc-9b25-84a466bcf0a2" /> </br>
 
-<img width="878" height="98" alt="image" src="https://github.com/user-attachments/assets/0a2aa402-96be-4154-94d2-002d2b1c550e" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/0a2aa402-96be-4154-94d2-002d2b1c550e" />
 
 Con Wireshark logramos capturar el handshake TCP de esta conexion:
 
-<img width="1195" height="172" alt="image" src="https://github.com/user-attachments/assets/b243e174-9a89-4fc9-aa00-eed18f5b743a" />
+<img width="1100" alt="image" src="https://github.com/user-attachments/assets/b243e174-9a89-4fc9-aa00-eed18f5b743a" />
 
 Y logramos capturar el contenido del mensaje:
 
-<img width="901" height="501" alt="image" src="https://github.com/user-attachments/assets/1b2bd0c8-52e8-4815-a777-0ac89c09c289" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/1b2bd0c8-52e8-4815-a777-0ac89c09c289" />
 
 A continuacion repetimos la experiencia con un servidor UDP en el puerto 5555:
 
-<img width="893" height="67" alt="image" src="https://github.com/user-attachments/assets/18108dfc-c0fd-49ec-a135-167e74857aff" />
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/18108dfc-c0fd-49ec-a135-167e74857aff" /> </br>
 
-<img width="802" height="99" alt="image" src="https://github.com/user-attachments/assets/4571cacb-4c47-4394-bf1f-7ef36d3e5112" />
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/4571cacb-4c47-4394-bf1f-7ef36d3e5112" /></br>
 
-<img width="1198" height="102" alt="image" src="https://github.com/user-attachments/assets/da2044b1-09c9-4c88-af3f-45cca69e7646" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/da2044b1-09c9-4c88-af3f-45cca69e7646" /></br>
 
 El ultimo paquete que podemos ver en el tablero de Wireshark corresponde al mensaje de las capturas.
 
 Finalmente nos conectamos a la PC4, donde tambien registramos nuestra presencia:
 
-<img width="1179" height="554" alt="image" src="https://github.com/user-attachments/assets/c90a6700-4d61-473e-9957-e2edb4738a5f" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/c90a6700-4d61-473e-9957-e2edb4738a5f" />
 
 Aqui establecimos una conexion netcat entre ambas maquinas virtuales y realizamos un ida y vuelta entre ellas:
 
-> [!IMPORTANT]
-> Insertar el video aqui
+https://github.com/user-attachments/assets/e27ae568-8825-44a5-9b13-8a033b60e5c6
+
 
 ### Servidor HTTP
 
@@ -174,19 +174,19 @@ En la PC3, navegamos a la carpeta de nuestro grupo y generamos un `index.html`, 
 
 Si bien la consigna planteaba el comando con el puerto 8000, encontramos que en la VM un proceso ya estaba usando ese puerto. Intentamos utilizar el 8001 pero no conseguiamos llegar hacia la maquina virtual desde nuestra PC local por lo que determinamos que este no estaba habilitado para recibir trafico externo. Decidimos utilizar el puerto 5050 nuevamente que sabiamos podia recibir trafico:
 
-<img width="1168" height="173" alt="image" src="https://github.com/user-attachments/assets/aa34ee52-8056-40bf-aa9f-8f8c1da13e87" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/aa34ee52-8056-40bf-aa9f-8f8c1da13e87" />
 
 Con el servidor iniciado pudimos visualizar el contenido de nuestro html desde la PC local:
 
-<img width="1152" height="551" alt="image" src="https://github.com/user-attachments/assets/b2e5c5ba-17dc-492b-a49b-450b9ebc8896" />
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/b2e5c5ba-17dc-492b-a49b-450b9ebc8896" /> </br> </br>
 
-<img width="1027" height="383" alt="image" src="https://github.com/user-attachments/assets/b143ebb1-6c41-4f98-8709-10968c74f071" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/b143ebb1-6c41-4f98-8709-10968c74f071" />
 
 Y con Wireshark conseguimos capturar los paquetes HTTP donde podemos facilmente descifrar el contenido:
 
-<img width="1198" height="135" alt="image" src="https://github.com/user-attachments/assets/083f8b1d-f36c-4b00-af57-ac1f63a0bf00" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/083f8b1d-f36c-4b00-af57-ac1f63a0bf00" /></br></br>
 
-<img width="1192" height="884" alt="image" src="https://github.com/user-attachments/assets/2e9c09c7-f46b-4bae-989b-236056dd2664" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/2e9c09c7-f46b-4bae-989b-236056dd2664" />
 
 Determinamos que podriamos intervenir el contenido mediante un ataque Man in the Middle, ya que el contenido del paquete no esta cifrado y podemos ver el cuerpo y las cabeceras de este. Esto deja a la comunicacion vulnerable a la inyeccion de datos en el transito por la red.
 
