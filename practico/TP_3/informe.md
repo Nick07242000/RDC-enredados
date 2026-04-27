@@ -203,6 +203,16 @@ Al interceptar la comunicacion inalambrica los atacantes logran alterar los dato
 
 **_TP #3 :_** En este practico observamos la diferencia entre trafico plano y cifrado, a traves de SSH y HTTP/UDP/TCP, observando lo trivial que es leer los datos si estos no se cifran. Precisamente esto es lo que esta siendo explotado en el video, los datos viajan por el medio sin encriptacion, lo que permite leer la comunicacion entre los dispositivos, descifrar el funcionamiento de esta, y manipular la transmision de manera sencilla.
 
+#### Principio de Confidencialidad
+
+Este establece que la informacion solo debe ser accesible para las partes autorizadas. En relacion a las redes de computadoras y esta experiencia hay consideraciones criticas que debemos tener en cuenta.
+
+El texto plano es un peligro inminente. Esto lo observamos al desplegar el servidor HTTP basico en el puerto 5050, cualquier atacante que intercepte la red puede leer exactamente que informacion se esta enviando. En el caso de Apple Pay, la falta de cifrado en la comunicacion de transito rompio la confidencialidad exponiendo la estructura del mensaje.
+
+Esta falta de confidencialidad compromete la integridad. Si un atacante puede leer los datos también puede entender como alterarlos. La falta de cifrado deja a la comunicacion vulnerable a la inyeccion de datos en el transito por la red. Eso fue lo que le permitio a los atacantes de MKBHD reescribir los bits de "alto valor" y "verificacion del cliente".
+
+Por esto es que el cifrado extremo a extremo debe ser obligatorio. Para garantizar la confidencialidad se deben usar protocolos como SSH donde la autenticacion y el cifrado mediante claves aseguran que la informacion viaje de forma ilegible para terceros. Si los datos de la tarjeta hubieran estado cifrados con una clave que solo el banco y el telefono compartieran el ataque habria sido imposible.
+
 ---
 
 ## Discusion y conclusiones
