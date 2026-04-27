@@ -167,7 +167,6 @@ Aqui establecimos una conexion netcat entre ambas maquinas virtuales y realizamo
 
 https://github.com/user-attachments/assets/e27ae568-8825-44a5-9b13-8a033b60e5c6
 
-
 ### Servidor HTTP
 
 En la PC3, navegamos a la carpeta de nuestro grupo y generamos un `index.html`, el cual utilizamos desplegando un servidor HTTP.
@@ -192,16 +191,38 @@ Determinamos que podriamos intervenir el contenido mediante un ataque Man in the
 
 ### Hacking
 
-...
+El video de Veritasium detalla una vulnerabilidad muy interesante que ocurre al combinar la funcionalidad de Apple que permite pagar en el transporte publico sin requerir FaceID o PIN con la forma en que las tarjetas Visa manejan la criptografia en las transacciones. 
+
+Al interceptar la comunicacion inalambrica los atacantes logran alterar los datos binarios en tiempo real para engañar al telefono haciéndole creer que esta pagando un pasaje de metro de bajo valor, mientras simultáneamente engañan a la terminal de pago real convenciendola de que el usuario verifico la transaccion, logrando asi evadir todas las capas de seguridad.
+
+#### Relacion con Experiencias
+
+**_TP #1 :_** En este practico observamos como los datos pueden ser modificados en transito, el tipo de exploit exacto utilizando en el video, un ataque de tipo Man in The Middle. Mientras que en nuestro caso se modificaba un bit random en transito, el ataque del video ataca bits especificos para modificar el comportamiento del receptor del mensaje.
+
+**_TP #2 :_** En este practico observamos como viajan las tramas entre dispositivos, y el medio fisico de la conexion. En el ataque es precisamente el medio fisico el punto de ataque, explotando el campo magnetico donde se transmiten los bits. El ataque se inserta en el enlace de datos entre el iPhone y la terminal de pago, la capa exacta que vimos en la experiencia.
+
+**_TP #3 :_** En este practico observamos la diferencia entre trafico plano y cifrado, a traves de SSH y HTTP/UDP/TCP, observando lo trivial que es leer los datos si estos no se cifran. Precisamente esto es lo que esta siendo explotado en el video, los datos viajan por el medio sin encriptacion, lo que permite leer la comunicacion entre los dispositivos, descifrar el funcionamiento de esta, y manipular la transmision de manera sencilla.
 
 ---
 
 ## Discusion y conclusiones
 
-...
+El trabajo permitio comprobar en la practica cómo los conceptos teoricos de redes se aplican en entornos reales. La experiencia con maquinas virtuales, conexiones remotas y analisis de tráfico facilito entender el comportamiento de los protocolos y visualizar tanto sus ventajas como sus riesgos.
+
+Un resultado clave fue la comparacion entre comunicaciones cifradas y no cifradas. Mientras SSH protege la informacion e impide su lectura, protocolos como HTTP o el uso de netcat exponen completamente los datos, evidenciando la importancia del cifrado para garantizar la confidencialidad.
+
+Tambien se comprendieron las diferencias entre TCP y UDP, donde el primero prioriza la confiabilidad mediante mecanismos de control, mientras que el segundo ofrece mayor rapidez a costa de no garantizar la entrega. Esto resalta la necesidad de elegir adecuadamente el protocolo segun el contexto.
+
+Por otro lado, se identificaron limitaciones reales del entorno, como restricciones de puertos, que influyen en el despliegue de servicios. Ademas, el análisis del caso del video permitio relacionar los conceptos con vulnerabilidades reales, mostrando como la falta de seguridad puede ser explotada mediante ataques Man in the Middle.
+
+En conclusion, el trabajo refuerza la importancia del uso de comunicaciones seguras y del analisis de tráfico como herramienta clave para comprender, diagnosticar y proteger redes en escenarios reales.
 
 ---
 
 ## Referencias
 
-[1] - ...
+[1] - [Secure Shell](https://es.wikipedia.org/wiki/Secure_Shell)
+
+[2] - [Netcat](https://www.ionos.com/es-us/digitalguide/servidores/herramientas/netcat/)
+
+[3] - [Veritasium Exploit](https://www.youtube.com/watch?v=PPJ6NJkmDAo&t=1s)
