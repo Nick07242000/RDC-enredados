@@ -163,6 +163,8 @@ Al ejecutar nuestro cliente vemos como se reciben los mensajes deserializados en
 
 A continuacion, nos apoyamos en la libreria `cryptography` de Python para encriptar nuestro mensaje.
 
+<img width="696" height="577" alt="image" src="https://github.com/user-attachments/assets/44d281d9-e8ca-411a-8b12-f9505fa6d75e" />
+
 Aqui, generamos una key simetrica, la cual utilizamos para encriptar nuestro mensaje y enviarlo al servidor serializado, donde el mensaje es recibido pero ahora el contenido no es legible:
 
 <img width="2046" height="1150" alt="1779235815295" src="https://github.com/user-attachments/assets/57da9cea-28be-44bc-bcba-7f77ae2a8bf7" />
