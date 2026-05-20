@@ -133,15 +133,39 @@ Ademas adiciona complejidad al requerir instalar herramientas adicionales como c
 
 ### Multithreaded TCP Server
 
-...
+Nuestro grupo realizo esta actividad de forma presencial, donde se levanto un servidor para usar de forma conjunta y cada equipo enviaba su payload serializada en ASCII desde su propio cliente a el servidor.
+
+Para esto generamos nuestra payload con la estructura apropiada:
+
+<img width="1366" height="768" alt="IMG-20260519-WA0016" src="https://github.com/user-attachments/assets/37f86427-d813-4dab-8313-6f91cbd5f071" />
+
+Luego utilizando Packet Sender nos conectamos por medio de TCP al servidor:
+
+<img width="1366" height="768" alt="IMG-20260519-WA0015" src="https://github.com/user-attachments/assets/db2e7497-a4ff-429d-96a7-dd8b6b1ce38c" />
+
+Y enviamos el paquete codificado, el cual logramos visualizar en el output del servidor descerializado (nuestra IP es 181.238.18.10):
+
+<img width="2046" height="1150" alt="1779235815342" src="https://github.com/user-attachments/assets/9c90652c-5412-490d-bb49-b8a37b8d5e41" />
 
 ### Client
 
-...
+A continuacion, utilizamos el cliente disponible en Drive para enviar mensajes al servidor.
+
+Configuramos el mismo con la direccion IP y el puerto del servidor y serializamos la informacion antes del envio:
+
+<img width="1366" height="768" alt="IMG-20260519-WA0014" src="https://github.com/user-attachments/assets/dc0483c7-1870-474e-8ecb-42e333be2f4a" />
+
+Al ejecutar nuestro cliente vemos como se reciben los mensajes deserializados en el servidor.
+
+<img width="2046" height="1150" alt="1779235815316" src="https://github.com/user-attachments/assets/cb45ca64-44c4-4b35-83b0-b68fe86f915f" />
 
 ### Security
 
-...
+A continuacion, nos apoyamos en la libreria `cryptography` de Python para encriptar nuestro mensaje.
+
+Aqui, generamos una key simetrica, la cual utilizamos para encriptar nuestro mensaje y enviarlo al servidor serializado, donde el mensaje es recibido pero ahora el contenido no es legible:
+
+<img width="2046" height="1150" alt="1779235815295" src="https://github.com/user-attachments/assets/57da9cea-28be-44bc-bcba-7f77ae2a8bf7" />
 
 ### Decipher
 
