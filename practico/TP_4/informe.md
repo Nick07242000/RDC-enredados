@@ -59,6 +59,7 @@ La serializacion consiste en transformar estructuras de datos u objetos en un fo
 Por otra parte, el cifrado de datos permite proteger la confidencialidad de la informacion transmitida mediante algoritmos criptograficos que transforman los datos originales en contenido ilegible para terceros no autorizados. En redes, el cifrado de la payload evita que la informacion sensible pueda interpretarse incluso si los paquetes son capturados durante la transmision.
 
 Finalmente, herramientas de analisis de trafico como Wireshark permiten inspeccionar paquetes en tiempo real, analizar protocolos y verificar aspectos relacionados con conectividad, encapsulamiento y seguridad de las comunicaciones.
+
 ---
 
 ## Resultados
