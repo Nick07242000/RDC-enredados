@@ -202,8 +202,6 @@ Agregando un log podemos ver como coincide el payload predescifrado con lo visua
 
 ## Discusion y conclusiones
 
-## Discusion y conclusiones
-
 El estudio de la serializacion permitio analizar la importancia de transformar estructuras complejas de datos en formatos transmisibles por red. La comparacion entre serializacion binaria y no binaria mostro claramente el compromiso existente entre legibilidad humana, eficiencia y rendimiento. En este contexto, JSON resulto especialmente util para tareas de depuracion y pruebas debido a su simplicidad y amplia compatibilidad.
 
 Uno de los aspectos mas relevantes del trabajo fue la incorporacion de mecanismos de seguridad mediante cifrado simetrico utilizando Fernet. La implementacion permitio observar experimentalmente como la carga util de los mensajes puede protegerse frente a la inspeccion directa del trafico de red. Mediante Wireshark se comprobo que, aunque los paquetes pueden capturarse durante la transmision, el contenido permanece ilegible sin la clave correspondiente, evidenciando la importancia del cifrado en sistemas distribuidos modernos.
