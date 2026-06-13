@@ -216,6 +216,19 @@ Atribuumos los fallos a un problema de diseño, donde el contenido estatico no e
 
 ### Escalabilidad y Balanceo
 
+> Modificá la arquitectura del punto anterior para soportar mayor tráfico.  
+> Probá al menos dos estrategias distintas:  
+> ● Agregar más capacidad de cómputo.  
+> ● Agregar balanceador de carga.  
+> ● Agregar caché.  
+> ● Agregar réplicas de lectura.  
+> ● Agregar cola de mensajes.  
+> ● Separar servicios según tipo de tráfico.  
+> Para cada estrategia, documentá:  
+> ¿Escalar horizontalmente siempre mejora el sistema? Justificá usando evidencia del simulador.
+
+
+
 ---
 
 ## Discusion y conclusiones
