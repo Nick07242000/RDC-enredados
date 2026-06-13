@@ -131,7 +131,6 @@ Finalmente, componentes como firewalls, sistemas de filtrado de trafico y mecani
 | SEARCH (GET)     | Puede representar busqueda de productos en un e-commerce o consulta de articulos en una plataforma.           | Search Engine (o SQL DB en sistemas simples)         | Consultas lentas, alto consumo de recursos y degradacion del rendimiento general.                    |
 | MALICIOUS        | Puede representar ataques DDoS, escaneo de puertos, intentos de explotación o tráfico automatizado malicioso. | Firewall                                             | Caida de servicios, consumo excesivo de recursos, perdida de disponibilidad y daños a la reputacion. |
 
-
 ### Testeamos Queues
 
 > Construiremos una infraestructura mínima para testear queues.  
@@ -144,7 +143,7 @@ Al iniciar con tan solo una request por segundo, observamos como las requests ta
 
 <img width="1272" height="1095" alt="image" src="https://github.com/user-attachments/assets/70636cb8-44c0-456b-91cd-a96bae36f8ce" />
 
-Al aumnetar a cinco requests por segundo comenzamos a observar las request esperar levemente antes de pasar al centro de computo.
+Al aumentar a cinco requests por segundo comenzamos a observar las request esperar levemente antes de pasar al centro de computo.
 
 <img width="1261" height="1087" alt="image" src="https://github.com/user-attachments/assets/1fd0fb20-e1e7-4327-ae14-604c332ec546" />
 
@@ -152,7 +151,24 @@ Al aumentar a diez comenzamos algunas requests siendo buffered, es decir que est
 
 <img width="1269" height="1098" alt="image" src="https://github.com/user-attachments/assets/9eff887b-183e-4db0-bd74-8dfe099650f2" />
 
-Cuando volvemos a uno de nuevo vemos como empiezan a salir de la cola y ser procesadas por el computo.
+Aqui es donde podemos ver claramente como la queue protege el compute manteniendo el ritmo de flujos de requests constantes, aunque el trafico real aumente exponencialmente.
+
+Cuando volvemos a uno de nuevo vemos como las requests que habian quedado encoladas empiezan a salir de la cola y ser procesadas por el computo.
+
+<img width="1289" height="1098" alt="image" src="https://github.com/user-attachments/assets/0f8f947c-c00c-4779-9034-a4add5d63d98" />
+
+Podemos hacer el ejercicio de setear un rate muy alto donde de nuevo vemos como el rate hacia el compute se mantiene constante:
+
+<img width="1282" height="1090" alt="image" src="https://github.com/user-attachments/assets/2a068f0d-ec29-48f9-903f-987d985c704c" />
+
+Y al bajarlo a cero de nuevo vemos como las requests encoladas terminan de procesarse:
+
+<img width="1284" height="1102" alt="image" src="https://github.com/user-attachments/assets/97015414-5147-49da-8524-fc07dd37ba31" />
+
+Este es el proposito de la queue, protege nuestra infraestructura de picos de trafico, encolando las requests para ser procesadas al ritmo que nuestra infra soporte, evitando asi el colapso de la misma por sobrecarga de los recursos.
+
+### Primera Infraestructura Minima
+
 
 
 ---
