@@ -93,10 +93,10 @@ Finalmente, componentes como firewalls, sistemas de filtrado de trafico y mecani
 | Search Engine       | Procesa trafico de busqueda tres veces mas rapido que SQL, solo atiende busqueda                         |
 | Réplica             | Procesa trafico de lectura mas rapido que la DB maestra a la que esta conectada                          |
 
-> Para cada uno, respondé brevemente:
-> a) ¿Qué problema resuelve?
-> b) ¿En qué capa o capas del modelo TCP/IP podríamos ubicar su función principal?
-> c) ¿Qué pasaría si ese componente falta en una arquitectura real?
+> Para cada uno, respondé brevemente:  
+> a) ¿Qué problema resuelve?  
+> b) ¿En qué capa o capas del modelo TCP/IP podríamos ubicar su función principal?  
+> c) ¿Qué pasaría si ese componente falta en una arquitectura real?  
 
 | Elemento                | Problema Resuelve                                                                             | Capa TCP/IP             | ¿Que pasa si falta?                                                                                              |
 | ----------------------- | --------------------------------------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -115,29 +115,30 @@ Finalmente, componentes como firewalls, sistemas de filtrado de trafico y mecani
 
 ### Tipos de Trafico
 
-> El simulador trabaja con distintos tipos de solicitudes: STATIC, READ, WRITE, UPLOAD, SEARCH, MALICIOUS
-> Para cada tipo de tráfico, completar una tabla con:
-> ● Tipo de tráfico
-> ● Ejemplo real
-> ● Componente recomendado para procesarlo
-> ● Riesgo si se procesa incorrectamente
+> El simulador trabaja con distintos tipos de solicitudes: STATIC, READ, WRITE, UPLOAD, SEARCH, MALICIOUS  
+> Para cada tipo de tráfico, completar una tabla con:  
+> ● Tipo de tráfico  
+> ● Ejemplo real  
+> ● Componente recomendado para procesarlo  
+> ● Riesgo si se procesa incorrectamente  
 
-| Tipo de tráfico      | Descripción                                                                                                                                                                                                                                                                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| STATIC (GET)         | Puede representar imagenes, archivos CSS, JavaScript o recursos multimedia de una pagina web. En una arquitectura real suele servirse desde un CDN o un sistema de almacenamiento estatico. Si se procesa desde servidores de aplicacion, se desperdician recursos de computo y aumenta la carga innecesariamente.                          |
-| READ (GET)           | Puede representar consultas de informacion, como ver un perfil de usuario, una lista de productos o el historial de compras. Generalmente se procesa en una base de datos SQL o en replicas de lectura. Si se gestiona incorrectamente, la base de datos puede saturarse y aumentar significativamente los tiempos de respuesta.            |
-| WRITE (POST/PUT)     | Puede representar operaciones de creacion o modificacion de datos, como registrar usuarios, actualizar perfiles o realizar compras. Normalmente se procesa en la base de datos principal. Si falla o se enruta incorrectamente, pueden producirse perdidas de informacion o inconsistencias en los datos.                                   |
-| UPLOAD (POST)        | Puede representar la carga de imagenes, documentos o videos por parte de los usuarios. En una arquitectura real suele almacenarse en servicios de almacenamiento de objetos. Si se procesa directamente en los servidores de aplicacion, puede consumir mucho ancho de banda y recursos, afectando el rendimiento general del sistema.      |
-| SEARCH (GET)         | Puede representar busquedas de productos, articulos o contenido dentro de una plataforma. En sistemas grandes suele utilizarse un motor de busqueda especializado. Si se procesa unicamente con la base de datos principal, las consultas complejas pueden generar lentitud y sobrecarga del sistema.                                       |
-| MALICIOUS            | Representa trafico malicioso como ataques DDoS, intentos de explotacion o solicitudes automatizadas no legitimas. En una arquitectura real debe ser filtrado por un firewall o sistemas de proteccion perimetral. Si alcanza los servicios internos, puede consumir recursos, provocar caidas y afectar la disponibilidad de la aplicacion. |
+| Tipo de trafico  | Ejemplo real                                                                                                  | Componente recomendado para procesarlo               | Riesgo si se procesa incorrectamente                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| STATIC (GET)     | Puede representar imagenes, archivos CSS, JavaScript o logos de un sitio web.                                 | Storage + Cache/CDN                                  | Mayor latencia, consumo innecesario de recursos de computo y sobrecarga de los servidores.           |
+| READ (GET)       | Puede representar consultas de perfil de usuario, listados de productos o historial de compras.               | SQL DB (opcionalmente Replica para escalar lecturas) | Datos no disponibles, respuestas lentas o saturacion de la base de datos principal.                  |
+| WRITE (POST/PUT) | Puede representar registro de un usuario, creacion de una orden de compra o actualizacion de datos.           | SQL DB                                               | Perdida de datos, inconsistencias o errores en las transacciones.                                    |
+| UPLOAD (POST)    | Puede representar subida de imagenes, documentos, videos o archivos adjuntos.                                 | Storage (apoyado por Compute para procesamiento)     | Perdida de archivos, lentitud del sistema o saturacion de los servidores de aplicacion.              |
+| SEARCH (GET)     | Puede representar busqueda de productos en un e-commerce o consulta de articulos en una plataforma.           | Search Engine (o SQL DB en sistemas simples)         | Consultas lentas, alto consumo de recursos y degradacion del rendimiento general.                    |
+| MALICIOUS        | Puede representar ataques DDoS, escaneo de puertos, intentos de explotación o tráfico automatizado malicioso. | Firewall                                             | Caida de servicios, consumo excesivo de recursos, perdida de disponibilidad y daños a la reputacion. |
+
 
 ### Testeamos Queues
 
-> Construiremos una infraestructura mínima para testear queues.
-> Conectarán un firewall, una queue y una instancia de computación.
-> Denle play y jueguen con el throughput (rate de tráfico).
-> Incrementen el rate: que sucede después de la queue?.
-> Mantengan el rate alto y luego llevenlo a cero rápidamente. Qué sucede después de la queue?
+> Construiremos una infraestructura mínima para testear queues.  
+> Conectarán un firewall, una queue y una instancia de computación.  
+> Denle play y jueguen con el throughput (rate de tráfico).  
+> Incrementen el rate: que sucede después de la queue?  
+> Mantengan el rate alto y luego llevenlo a cero rápidamente. Qué sucede después de la queue?  
 
 Al iniciar con tan solo una request por segundo, observamos como las requests tan solo pasaban el firewall (si no eran maliciosas), y pasaban a traves de la queue sin delay alguno derecho al centro de computo.
 
