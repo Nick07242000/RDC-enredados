@@ -169,7 +169,52 @@ Este es el proposito de la queue, protege nuestra infraestructura de picos de tr
 
 ### Primera Infraestructura Minima
 
+> Tu arquitectura debe intentar resolver:  
+> ● Tráfico estático y uploads.  
+> ● Lecturas y escrituras de datos.  
+> ● Búsquedas.  
+> ● Ataques o tráfico malicioso.  
+> En modo sandbox, modificá la distribución de tráfico y modificá el rate. Documenta con capturas:  
+> a) La arquitectura inicial.  
+> b) El presupuesto inicial.  
+> c) El estado de salud de los servicios.  
+> d) El momento en que la arquitectura empieza a fallar, si ocurre.
 
+Empezamos con la siguiente configuracion:
+
+<img width="1279" height="1099" alt="image" src="https://github.com/user-attachments/assets/d410a59b-39d1-4164-81dd-0886744a592b" />
+
+Tenemos un firewall para protegernos de los ataque maliciosos, una queue para protegernos de los picos de trafico, un load balancer para distribuir la carga equitativamente a tres centros de computo, los cuales disponen de una NoSQL para requests de escritura y lectura, y una Search para busquedas. Ademas agregamos un CDN y un Storage para el contenido estatico.
+
+Para esto usamos $600 del presupuesto inicial por defecto de $2000.
+
+> ¿Qué componente falló primero?  
+> ¿Por qué creés que falló?  
+> ¿Fue un problema de capacidad, diseño, costo o seguridad?
+
+Iniciando con tan solo 1 req/s pudimos ver como obtuvimos el primer fallo en una request de upload. Esto puede significar que nuestro procesamiento de contenido estatico esta subdimensionado.
+
+<img width="1281" height="1089" alt="image" src="https://github.com/user-attachments/assets/bed2939e-f741-4a11-893f-894fc90c3044" />
+
+Aumentando a 5 req/s vimos como este trend se mantenia, las unicas requests que presentaban fallos eran las de upload:
+
+<img width="1280" height="1096" alt="image" src="https://github.com/user-attachments/assets/447f3362-baf7-449b-8ce6-ad3f1189ce21" />
+
+Este trend se mantuvo hasta llegar a 18 req/s, donde comenzamos a ver fallos en trafico es escritura y busqueda, lo cual atribuimos a una sobrecarga de los centros de computo. Podemos observar como estan al limite de su carga:
+
+<img width="1284" height="1089" alt="image" src="https://github.com/user-attachments/assets/b2115ca3-fe80-4749-8df4-772ce7a8dd93" />
+
+A 25 req/s vemos como los centros de computo estan en estado critico, estan recibiendo trafico que supera su capacidad de procesamiento y las requests estan siendo encoladas, la tasa de fallo ya es demasiado grande y esta impactando seriamente a la reputacion:
+
+<img width="1292" height="1094" alt="image" src="https://github.com/user-attachments/assets/708dfa5f-3a79-424d-87a0-29932cde88e2" />
+
+Llevando esta arquitectura simplificada a un solo centro de computo al modo survival podemos observar claramente que ahi esta presente el cuello de botella:
+
+<img width="1276" height="993" alt="image" src="https://github.com/user-attachments/assets/b7ac7a14-7e47-4ccb-b8f9-d3b2546219c3" />
+
+Atribuumos los fallos a un problema de diseño, donde el contenido estatico no estaba siendo propiamente procesado, y donde los centros de computo eran pocos, o no lo suficientemente potentes para procesar al nivel del resto de la arquitectura.
+
+### Escalabilidad y Balanceo
 
 ---
 
