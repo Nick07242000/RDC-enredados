@@ -343,7 +343,7 @@ Lo que aprendimos de este intento es lo importante que es la resiliencia a trave
 
 <img width="464" height="684" alt="image" src="https://github.com/user-attachments/assets/3d5b457a-b3a7-4100-9a50-cb04a74cb0cc" />
 
-Sin embargo un eventod de fallo de cache cuando estabamos en X2 colapso rapidamente la reputacion, por lo que consideramos que agregar duplicidad de bases de datos y caches en cada replica de la infra hubiera logrado atajar esas eventualidades.
+Sin embargo un evento de fallo de cache cuando estabamos en X2 colapso rapidamente la reputacion, por lo que consideramos que agregar duplicidad de bases de datos y caches en cada replica de la infra hubiera logrado atajar esas eventualidades.
 
 ---
 
