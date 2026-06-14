@@ -271,6 +271,15 @@ Esta vez eran las escrituras, lo que nos indicaba que las lecturas estaban siend
 
 Eso funciono, permitiendonos llegar hasta 295 req/s, donde comenzamos a observar fallos nuevamente en todo tipo de request, que inferimos significa que volvimos al cuello de botella del computo paralelo de requests.
 
+#### ¿Que nos indica toda esta secuencia?
+
+Pudimos observar tanto las estrategias clasicas del escalamiento vertical y horizontal. Mientras que la primera da mayor poder de procesamiento al disponer de instancias con mas recursos para procesar mas requests, y la segunda simplemente aumenta la cantidad de instancias procesando, ambas nos permiten atacar mayor cantidad de requests. El escalamiento horizontal en particular es popular en la era de la computacion moderna de Cloud Computing, al permitir escalar con recursos externos por los periodos de trafico mayor, en lugar de tener que tener servidores sobredimensionados para potenciales aumentos de trafico, y que es una infraestructura muy poco flexible.
+
+Sin embargo observamos como claramente esto no es la solucion a todos lo problemas. Al encontrarnos con cuellos de botella en las bases de datos, a veces no es tan facil escalar horizontalmente al tener que lidiar con migraciones de los datos, y la consistencia entre las diversas instancias, y el escalado horizontal puede ser muy costoso. Por eso existen diversas estrategias que podemos aplicar, tecnologias que nos permiten resolver estos cuellos de botellas de forma mas eficiente o economica, como las caches y las replicas de lectura para distribuir el procesamiento de una base de datos.
+
+> [!NOTE]
+> Intentamos separar los servicios segun el tipo de trafico, sin embargo nos encontramos con el problema de que las requests iban hacia centros de computo que no disponian de la base de datos / recurso necesario para procesarlo, por lo que no pudimos adoptar esta estrategia.
+
 ---
 
 ## Discusion y conclusiones
