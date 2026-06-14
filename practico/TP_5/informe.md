@@ -284,6 +284,43 @@ Ademas si escalamos horizontalmente de manera ciega, sin estudiar donde esta el 
 
 ### Sobrevivir
 
+> Diseñá una arquitectura inicial sólida y tratá de sobrevivir lo más posible mejorando la misma en el modo “survival”.  
+> Documenta tu arquitectura final (al momento del fallo) con una captura y explicá:  
+> ● Por qué elegiste cada componente.  
+> ● Qué tráfico atiende cada uno.  
+> ● Qué cuello de botella apareció primero.  
+> ● Qué componente escalarías si tuvieras más presupuesto.  
+
+Primero comenzamos con una infraestructura simplificada que consistia en:
+- Firewall para protegernos de requests maliciosas
+- Queue para proteger el sistema de picos de trafico
+- Una lambda ya que tiene mayor capacidad que un simple computo y nos da mas flexibilidad en los primeros req/s que tener que escalar computos.
+- Un CDN + Storage para atender todo el contenido estatico y de subida
+- Una SQL para atender el resto del trafico
+
+<img width="550" height="354" alt="image" src="https://github.com/user-attachments/assets/f8e7ceba-db6d-42b9-90b0-29110ad2b44a" />
+
+Esto funciono adecuadamente sin traernos errores hasta llegar a un req/s donde tuvimos que reemplazar la lambda por un Load Balancer y multiples centros de computo para reducir el costo por request:
+
+<img width="653" height="413" alt="image" src="https://github.com/user-attachments/assets/eead1094-f1ce-447a-99ed-420940fda318" />
+
+Este patron continuo hasta que el proximo cambio que introducimos fue una cache para la SQL para reducir la carga en la misma:
+
+<img width="616" height="406" alt="image" src="https://github.com/user-attachments/assets/e6ed934f-9764-4fe1-affe-78c593e908af" />
+
+Eventualmente reemplazamos la SQL por una NoSQL y una Search para distribuir el trafico hacia DBs mas especializadas para tratar el mismo:
+
+<img width="777" height="502" alt="image" src="https://github.com/user-attachments/assets/e07381cd-ee28-408a-a61e-1e0e1d2a2058" />
+
+Luego tuvimos que remover la queue ya que empezo a hacer cuello de botella hacia nuestro sistema:
+
+<img width="740" height="478" alt="image" src="https://github.com/user-attachments/assets/5dae3573-bd1e-4700-b88c-0b54b55dba77" />
+
+Finalmente empezamos a ver fallos de lectura por lo cual agregamos una replica de lectura pero al combinarse con un evento de triple trafico perdimos toda la reputacion:
+
+<img width="466" height="638" alt="image" src="https://github.com/user-attachments/assets/19ea10b2-2380-487e-8a51-435e0b7acea0" />
+<img width="760" height="524" alt="image" src="https://github.com/user-attachments/assets/3dcf706c-9bd6-4c75-8372-7ce53c1207f0" />
+
 ---
 
 ## Discusion y conclusiones
