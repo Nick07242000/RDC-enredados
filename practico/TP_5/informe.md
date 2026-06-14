@@ -319,7 +319,7 @@ Luego tuvimos que remover la queue ya que empezo a hacer cuello de botella hacia
 Finalmente empezamos a ver fallos de lectura por lo cual agregamos una replica de lectura pero al combinarse con un evento de triple trafico perdimos toda la reputacion:
 
 <img width="466" height="638" alt="image" src="https://github.com/user-attachments/assets/19ea10b2-2380-487e-8a51-435e0b7acea0" />
-<img width="760" height="524" alt="image" src="https://github.com/user-attachments/assets/3dcf706c-9bd6-4c75-8372-7ce53c1207f0" />
+<img width="705" height="467" alt="image" src="https://github.com/user-attachments/assets/3d0084c4-a5cd-4c27-8f61-dd723ae2192a" />
 
 ---
 
