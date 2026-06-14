@@ -233,6 +233,31 @@ Al incorporar los centros de computo al storage no obtuvimos mas fallos de Uploa
 
 <img width="1265" height="1101" alt="image" src="https://github.com/user-attachments/assets/b1fb95bd-1f59-40d5-956a-e355da11d65a" />
 
+Luego aumentamos de nuevo las requests hasta visualizar el cuello de botella nuevamente en los centros de computo:
+
+<img width="1266" height="1101" alt="image" src="https://github.com/user-attachments/assets/d3350ce1-8dc7-4a52-8491-7e505760ea91" />
+
+Lo mas sencillo que podemos probar es aumentar la capacidad de computo mejorando los Compute, donde al realizar esto pudimos aumentar la cantidad de req/s que procesamos sin recibir error alguno:
+
+<img width="1264" height="1093" alt="image" src="https://github.com/user-attachments/assets/13ab09ad-6a36-4c14-b12c-295b265b003a" />
+
+Eso mantuvo la infraestructura estable hasta llegar a 90 req/s, donde comenzamos a observar fallos nuevamente:
+
+<img width="1265" height="1098" alt="image" src="https://github.com/user-attachments/assets/7454ee5c-79a5-48b4-82d5-b47ad7a028fa" />
+
+Aqui al intentar simplemente escalar horizontalmente los centros de computo encontramos que de igual forma recibimos fallos en todo tipo de requests, lo que nos indicaba que el fallo estaba en otro lugar.
+
+<img width="1261" height="1107" alt="image" src="https://github.com/user-attachments/assets/0d418cd2-2a42-4c69-9119-826f8f58e3a7" />
+
+Rapidamente nos dimos cuenta que el problema estaba en la queue, cuyo proposito es proteger ante picos de trafico, pero al ser un ritmo de requests elevado constante, estaba simplemente actuando como un cuello de botella para el resto de la infraestructura que estaba provisionada para manejar ese tipo de trafico:
+
+<img width="1267" height="1093" alt="image" src="https://github.com/user-attachments/assets/9622cd08-1e5f-419a-b26d-293e3a1590d0" />
+
+De aqui continuamos aumentando las rps, pero al llegar a 170rps, no importa el escalamiento horizontal que realizaramos, requests continuaban fallando:
+
+<img width="1264" height="1184" alt="image" src="https://github.com/user-attachments/assets/2fc9b4d8-82ce-4403-84d9-43f14952dd4e" />
+
+
 
 ---
 
