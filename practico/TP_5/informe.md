@@ -321,6 +321,30 @@ Finalmente empezamos a ver fallos de lectura por lo cual agregamos una replica d
 <img width="466" height="638" alt="image" src="https://github.com/user-attachments/assets/19ea10b2-2380-487e-8a51-435e0b7acea0" />
 <img width="705" height="467" alt="image" src="https://github.com/user-attachments/assets/3d0084c4-a5cd-4c27-8f61-dd723ae2192a" />
 
+A partir de esto nos llevamos varios aprendizajes para intentar de nuevo.
+
+Esta vez comenzamos con un compute, ya que observamos que la lambda estaba sobredimensionada para la cantidad de requests al comienzo, y para cuando comenzaba a acercarse a su capacidad el juego nos informaba que estabamos con costos muy altos:
+
+<img width="834" height="474" alt="image" src="https://github.com/user-attachments/assets/bb4237f4-a155-4a50-b583-35699db218ac" />
+
+Esto lo fuimos escalando con mas centros de computo a medida que era necesario, a traves de un load balancer, y agregamos una cache temprano para atajar las lecturas:
+
+<img width="875" height="450" alt="image" src="https://github.com/user-attachments/assets/4d0f9d3f-36fd-40e7-82c3-732c6e67a3fa" />
+
+Continuamos escalando horizontalmente y reemplazamos la SQL con una NoSQL y una Search para atender a las requests de forma mas especializada como habiamos hecho previamente. Ademas adicionamos una replica de lectura de forma preventiva, para prevenir que ante un pico de lecturas suframos una sobrecarga de la infraestructura:
+
+<img width="1018" height="444" alt="image" src="https://github.com/user-attachments/assets/ee721051-ca3b-4705-af8e-f661efd4596b" />
+
+Como la vez pasada la queue comenzo a actuar como forma de botella, por la que la quitamos y aprendiendo de la vez pasada decidimos agregar resiliencia duplicando la infraestructura en lugar de seguir acumulando centros de computo a las mismas bases de datos:
+
+<img width="1131" height="728" alt="image" src="https://github.com/user-attachments/assets/f85b667a-4a4b-401f-858c-0283c9bc9b0e" />
+
+Lo que aprendimos de este intento es lo importante que es la resiliencia a traves de duplicidad, ya que con esta configuracion conseguimos un record mucho mayor:
+
+<img width="464" height="684" alt="image" src="https://github.com/user-attachments/assets/3d5b457a-b3a7-4100-9a50-cb04a74cb0cc" />
+
+Sin embargo un eventod de fallo de cache cuando estabamos en X2 colapso rapidamente la reputacion, por lo que consideramos que agregar duplicidad de bases de datos y caches en cada replica de la infra hubiera logrado atajar esas eventualidades.
+
 ---
 
 ## Discusion y conclusiones
