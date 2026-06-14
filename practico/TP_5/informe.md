@@ -192,7 +192,7 @@ Para esto usamos $600 del presupuesto inicial por defecto de $2000.
 > ¿Por qué creés que falló?  
 > ¿Fue un problema de capacidad, diseño, costo o seguridad?
 
-Iniciando con tan solo 1 req/s pudimos ver como obtuvimos el primer fallo en una request de upload. Esto puede significar que nuestro procesamiento de contenido estatico esta subdimensionado.
+Iniciando con tan solo 1 req/s pudimos ver como obtuvimos el primer fallo en una request de upload. Esto puede significar que nuestro procesamiento de subida de contenido esta subdimensionado o mal diseñado.
 
 <img width="1281" height="1089" alt="image" src="https://github.com/user-attachments/assets/bed2939e-f741-4a11-893f-894fc90c3044" />
 
@@ -212,7 +212,7 @@ Llevando esta arquitectura simplificada a un solo centro de computo al modo surv
 
 <img width="1276" height="993" alt="image" src="https://github.com/user-attachments/assets/b7ac7a14-7e47-4ccb-b8f9-d3b2546219c3" />
 
-Atribuumos los fallos a un problema de diseño, donde el contenido estatico no estaba siendo propiamente procesado, y donde los centros de computo eran pocos, o no lo suficientemente potentes para procesar al nivel del resto de la arquitectura.
+Atribuumos los fallos a un problema de diseño, donde el contenido de upload no estaba siendo propiamente procesado, y donde los centros de computo eran pocos, o no lo suficientemente potentes para procesar al nivel del resto de la arquitectura.
 
 ### Escalabilidad y Balanceo
 
@@ -227,6 +227,11 @@ Atribuumos los fallos a un problema de diseño, donde el contenido estatico no e
 > Para cada estrategia, documentá:  
 > ¿Escalar horizontalmente siempre mejora el sistema? Justificá usando evidencia del simulador.
 
+Lo primero que intentamos corregir fue el procesamiento de las requests de upload, donde rapidamente nos dimos cuenta de que al no estar conectado el Storage con los centros de computo no estabamos procesando las requests de subida, solamante estabamos atacando el contenido Static a traves del CDN y el storage.
+
+Al incorporar los centros de computo al storage no obtuvimos mas fallos de Upload:
+
+<img width="1265" height="1101" alt="image" src="https://github.com/user-attachments/assets/b1fb95bd-1f59-40d5-956a-e355da11d65a" />
 
 
 ---
