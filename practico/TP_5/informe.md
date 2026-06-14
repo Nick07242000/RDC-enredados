@@ -277,8 +277,12 @@ Pudimos observar tanto las estrategias clasicas del escalamiento vertical y hori
 
 Sin embargo observamos como claramente esto no es la solucion a todos lo problemas. Al encontrarnos con cuellos de botella en las bases de datos, a veces no es tan facil escalar horizontalmente al tener que lidiar con migraciones de los datos, y la consistencia entre las diversas instancias, y el escalado horizontal puede ser muy costoso. Por eso existen diversas estrategias que podemos aplicar, tecnologias que nos permiten resolver estos cuellos de botellas de forma mas eficiente o economica, como las caches y las replicas de lectura para distribuir el procesamiento de una base de datos.
 
+Ademas si escalamos horizontalmente de manera ciega, sin estudiar donde esta el cuello de botella, esto no resolvera el problema, solo lo multiplicara. Agregar centros de computo ante una base de datos al limite de utilizacion no solucionara la situacion, sino que probablemente inunde aun mas y cause la caida total.
+
 > [!NOTE]
 > Intentamos separar los servicios segun el tipo de trafico, sin embargo nos encontramos con el problema de que las requests iban hacia centros de computo que no disponian de la base de datos / recurso necesario para procesarlo, por lo que no pudimos adoptar esta estrategia.
+
+### Sobrevivir
 
 ---
 
