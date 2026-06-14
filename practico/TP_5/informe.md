@@ -255,9 +255,21 @@ Rapidamente nos dimos cuenta que el problema estaba en la queue, cuyo proposito 
 
 De aqui continuamos aumentando las rps, pero al llegar a 170rps, no importa el escalamiento horizontal que realizaramos, requests continuaban fallando:
 
-<img width="1264" height="1184" alt="image" src="https://github.com/user-attachments/assets/2fc9b4d8-82ce-4403-84d9-43f14952dd4e" />
+<img width="1266" height="1204" alt="image" src="https://github.com/user-attachments/assets/4c4096dd-3f6d-41e0-8891-c09bdad5b085" />
 
+Vimos que particularmente las requests que fallaban eran las de escritura y lectura, por lo que el nuevo cuello de botella estaba presenta en la NoSQL que se encarga de procesar este tipo de requests.
 
+Para atacare esto teniamos dos opciones. La opcion sencilla era escalar vertical u horizontalmente la NoSQL, pero decidimos intentar adicionar una Cache para ver si mejoraba la situacion. Nuestra teoria era que al procesar atajar solicitudes respondiendo con la data cacheada, liberaria procesamiento de la NoSQL, permitiendola atacar las solicitudes que resulten en un miss en la cache.
+
+Esto funciono y nos permitio subir el rps hasta 180, donde observamos fallos de escritura en un porcentaje muy bajo, indicando que la cache alivio la base de datos en gran medida, pero seguiamos presentando problemas.
+
+<img width="1262" height="1189" alt="image" src="https://github.com/user-attachments/assets/cfa32d65-3572-4e9a-a4d5-5369f601b758" />
+
+Esta vez eran las escrituras, lo que nos indicaba que las lecturas estaban siendo aliviadas por la cache, pero todavia teniamos un cuello de botella en la NoSQL. Inferimos que quizas el trafico de lectura estaba consumiendo gran parte de los recursos de esta, y no estaba dejando aire para procesar las escrituras, por lo que decidimos agregar una replica de lectura, con la teoria de que esto difereria gran parte del procesamiento de lectura a la replica junto a la cache, dejando recursos de procesamiento para la escritura en la NoSQL master:
+
+<img width="1258" height="1196" alt="image" src="https://github.com/user-attachments/assets/2a33a2e9-d67e-427c-992a-4c382a8e87ad" />
+
+Eso funciono, permitiendonos llegar hasta 295 req/s, donde comenzamos a observar fallos nuevamente en todo tipo de request, que inferimos significa que volvimos al cuello de botella del computo paralelo de requests.
 
 ---
 
