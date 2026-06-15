@@ -14,7 +14,7 @@
 
 **Santiago M. Henn - Facundo N. Oliva Cuneo** 
 
-**08/06/2026**
+**15/06/2026**
 
 ---
 
@@ -362,3 +362,5 @@ Finalmente, el trabajo confirma que diseñar infraestructura es un ejercicio de 
 ---
 
 ## Referencias
+
+[1] - [Server Survival](https://pshenok.github.io/server-survival/)
