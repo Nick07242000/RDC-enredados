@@ -349,7 +349,15 @@ Sin embargo un evento de fallo de cache cuando estabamos en X2 colapso rapidamen
 
 ## Discusion y conclusiones
 
+A lo largo del trabajo se exploró, mediante simulación práctica, cómo los distintos componentes de una arquitectura distribuida interactúan para atender diferentes tipos de tráfico, cada uno con sus propias exigencias de procesamiento, latencia y almacenamiento.
 
+El recorrido siguió un hilo lógico: primero se identificaron los componentes y sus funciones individuales, luego se los integró en arquitecturas funcionales, después se reto a soportar un tráfico más elevado, y finalmente se incorporó la dimensión económica buscando maximizar la capacidad al menor costo posible.
+
+Uno de los aprendizajes más importantes fue entender que ningún componente opera de forma aislada. La interdependencia entre piezas hace que un cuello de botella en un punto pueda perjudicar o colapsar el sistema completo. Esto se vio con claridad cuando escalar horizontalmente los centros de cómputo no resolvía los fallos porque el verdadero problema estaba en otro componente. Escalar porque si no solo no ayuda, sino que puede empeorar la situación al aumentar la presión sobre el componente ya saturado.
+
+También se observó cómo un componente puede ser beneficioso en cierto rango de operación y convertirse en un obstáculo al cambiar las condiciones. La queue fue el ejemplo más claro: resultó fundamental para absorber picos de tráfico, pero a tasas sostenidas y elevadas terminó siendo ella misma el cuello de botella.
+
+Finalmente, el trabajo confirma que diseñar infraestructura es un ejercicio de trade-offs entre costo, rendimiento y disponibilidad. No existe una arquitectura universalmente óptima: las decisiones dependen de los requerimientos concretos y de tener en claro qué se prioriza, sabiendo que eso siempre implica resignar algo en otra dimensión.
 
 ---
 
